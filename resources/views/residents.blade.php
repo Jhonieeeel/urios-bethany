@@ -1,8 +1,8 @@
 <x-app-layout>
-    <div class="sm:p-16 p-6">
+    <div class="sm:p-16 m-16">
 
         <!-- table -->
-        <div class="overflow-auto rounded-md shadow-sm bg-green-200 p-6">
+        <div class="overflow-x-auto rounded-md shadow-sm bg-green-200 p-6">
             <!-- Reconds and Add Button Here -->
             <div class="flex items-center justify-between gap-x-6 border-b border-b-gray-400 pb-6">
                 <h3 class="text-md font-semibold">Resident Records</h3>
@@ -43,6 +43,7 @@
                 </tbody>
             </table>
 
+            <!-- mobile -->
         </div>
 
     </div>
