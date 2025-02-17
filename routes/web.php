@@ -43,6 +43,11 @@ Route::get('/add-resident', function () {
     return view('add-resident');
 })->middleware(['auth', 'verified'])->name('add-resident');
 
+Route::get('/add-officer', function () {
+    return view('add-officer');
+})->middleware(['auth', 'verified'])->name('add-officer');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -3,7 +3,7 @@
     <div class="p-16 max-w-5xl mx-12 my-2">
         <div class="flex justify-between items-center pb-9">
             <h3 class="font-bold">Officers</h3>
-            <a href="#" class="bg-green-700 px-6 py-1 text-white rounded-full">Add +</a>
+            <a href="{{ route('add-officer') }}" class="bg-green-700 px-6 py-1 text-white rounded-full">Add +</a>
         </div>
         <div class="flex items-start gap-x-9">
             <!-- Chancellor -->

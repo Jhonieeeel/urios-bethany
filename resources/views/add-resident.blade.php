@@ -5,45 +5,48 @@
             @csrf
             <!-- image -->
             <div class="flex flex-col items-center justify-center pt-6 max-w-md mx-auto">
+                <p class="font-bold text-green-600 pb-3">RESIDENT INFORMATION</p>
+                <small class="text-green-600">Upload Image</small>
                 <img src="{{ asset('images/upload-image.png') }}" class="shadow-lg" alt="">
-                <button type="submit" class="mt-2 px-6 py-1 text-md font-semibold">Upload</button>
+                <a href="{{ route('add-resident') }}" type="submit"
+                    class="mt-2 px-6 py-1 text-md font-semibold">Upload</a>
             </div>
+            <!-- RESIDENT INFORMATION -->
             <!-- form -->
             <div class="grid md:grid-cols-3 gap-4 p-6">
-                @csrf
                 <!-- username / email -->
                 <div class="p-2">
-                    <label for="firstname">First Name</label>
+                    <label for="firstname" class="text-green-600">First Name</label>
                     <x-text-input id="firstname" placeholder="" class="block mt-1 w-full placeholder:text-sm pl-9"
                         type="text" name="firstname" required autocomplete="" />
                 </div>
                 <div class="p-2">
-                    <label for="middlename">Middle Name</label>
+                    <label for="middlename" class="text-green-600">Middle Name</label>
                     <x-text-input id="email" placeholder="" class="block mt-1 w-full placeholder:text-sm pl-9"
                         type="text" name="middlename" required autocomplete="" />
                 </div>
                 <div class="p-2">
-                    <label for="lastname">Last Name</label>
+                    <label for="lastname" class="text-green-600">Last Name</label>
                     <x-text-input id="lastname" placeholder="" class="block mt-1 w-full placeholder:text-sm pl-9"
                         type="text" name="lastname" required autocomplete="" />
                 </div>
                 <div class="p-2">
-                    <label for="age">Age</label>
+                    <label for="age" class="text-green-600">Age</label>
                     <x-text-input id="age" placeholder="" class="block mt-1 w-full placeholder:text-sm pl-9"
                         type="text" name="age" required autocomplete="" />
                 </div>
                 <div class="p-2">
-                    <label for="sex">Sex</label>
+                    <label for="sex" class="text-green-600">Sex</label>
                     <x-text-input id="sex" placeholder="" class="block mt-1 w-full placeholder:text-sm pl-9"
                         type="text" name="Sex" required autocomplete="" />
                 </div>
                 <div class="p-2">
-                    <label for="address">Address</label>
+                    <label for="address" class="text-green-600">Address</label>
                     <x-text-input id="address" placeholder="" class="block mt-1 w-full placeholder:text-sm pl-9"
                         type="text" name="address" required autocomplete="" />
                 </div>
                 <div class="p-2">
-                    <label for="contact">Contact Number</label>
+                    <label for="contact" class="text-green-600">Contact Number</label>
                     <x-text-input id="contact" placeholder="" class="block mt-1 w-full placeholder:text-sm pl-9"
                         type="text" name="contact" required autocomplete="" />
                 </div>
@@ -52,36 +55,38 @@
             <div class="flex flex-col items-center justify-center pt-5 max-w-md mx-auto border">
                 <h3 class="font-semibold text-geen-700 text-2xl">Case Information</h3>
             </div>
+
+            <!-- CASE INFORMATION -->
             <!-- form -->
             <div class="grid md:grid-cols-3 gap-4 p-6">
                 <!-- username / email -->
                 <div class="p-2">
-                    <label for="firstname">Incident Date</label>
+                    <label for="firstname" class="text-green-600">Incident Date</label>
                     <x-text-input id="firstname" placeholder="" class="block mt-1 w-full placeholder:text-sm pl-9"
                         type="text" name="firstname" required autocomplete="" />
                 </div>
                 <div class="p-2">
-                    <label for="middlename">Incident Time</label>
+                    <label for="middlename" class="text-green-600">Incident Time</label>
                     <x-text-input id="email" placeholder="" class="block mt-1 w-full placeholder:text-sm pl-9"
                         type="text" name="middlename" required autocomplete="" />
                 </div>
                 <div class="p-2">
-                    <label for="lastname">Admission Date</label>
+                    <label for="lastname" class="text-green-600">Admission Date</label>
                     <x-text-input id="lastname" placeholder="" class="block mt-1 w-full placeholder:text-sm pl-9"
                         type="text" name="lastname" required autocomplete="" />
                 </div>
                 <div class="p-2">
-                    <label for="age">Reporting Date</label>
+                    <label for="age" class="text-green-600">Reporting Date</label>
                     <x-text-input id="age" placeholder="" class="block mt-1 w-full placeholder:text-sm pl-9"
                         type="text" name="age" required autocomplete="" />
                 </div>
                 <div class="p-2">
-                    <label for="sex">Nature of the Crime</label>
+                    <label for="sex" class="text-green-600">Nature of the Crime</label>
                     <x-text-input id="sex" placeholder="" class="block mt-1 w-full placeholder:text-sm pl-9"
                         type="text" name="Sex" required autocomplete="" />
                 </div>
                 <div class="p-2">
-                    <label for="address">Case Status</label>
+                    <label for="address" class="text-green-600">Case Status</label>
                     <x-text-input id="address" placeholder="" class="block mt-1 w-full placeholder:text-sm pl-9"
                         type="text" name="address" required autocomplete="" />
                 </div>

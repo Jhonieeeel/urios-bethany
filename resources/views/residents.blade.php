@@ -6,7 +6,8 @@
             <!-- Reconds and Add Button Here -->
             <div class="flex items-center justify-between gap-x-6 border-b border-b-gray-400 pb-6">
                 <h3 class="text-md font-semibold">Resident Records</h3>
-                <button class="px-3 py-1 bg-green-700 text-white text-sm rounded-full ">+Add</button>
+                <a href="{{ route('add-resident') }}"
+                    class="px-3 py-1 bg-green-700 text-white text-sm rounded-full ">+Add</a>
             </div>
 
             <table class="w-full mt-6 shadow-lg">

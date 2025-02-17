@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="sm:p-16">
         <!-- information -->
-        <div class="m-16 bg-green-200 p-6 max-w-4xl shadow-lg rounded-md">
+        <div class="mx-12 bg-green-100 p-6 max-w-4xl shadow-lg rounded-md">
             <div class="flex items-start justify-between p-6">
                 <div>
                     <h3 class="py-2 font-semibold text-md">RESIDENT INFORMATION</h3>
@@ -14,7 +14,6 @@
                             <p class="font-semibold text-md">Address: <span class="font-normal">Maon, Butuan City</span>
                             </p>
                         </div>
-                        <!-- image -->
 
                     </div>
                     <h3 class="py-2 font-semibold text-md">CASE INFORMATION</h3>
@@ -37,15 +36,22 @@
 
                     </div>
                 </div>
+                <!-- image -->
                 <div class="flex flex-col items-center justify-center gap-6">
                     <img src="{{ asset('images/chancellor.png') }}" alt="">
                     <div class="space-y-3">
                         <h3 class="font-semibold">Case Status</h3>
-                        <p class="w-full bg-gray-100 text-center rounded-full text-sm px-3 py-1">Pending</p>
+                        <p class="w-full border border-gray-700 bg-gray-100 text-center rounded-full text-sm px-3 py-1">
+                            Pending</p>
                     </div>
                 </div>
             </div>
-
+            <div class="flex justify-end items-center gap-x-3 text-white pr-6">
+                <!-- cancel -->
+                <button type="reset" class="bg-gray-500 rounded-full px-4 py-1">Cancel</button>
+                <!-- save -->
+                <button type="submit" class="bg-green-700 rounded-full px-4 py-1">Submit</button>
+            </div>
         </div>
     </div>
 </x-app-layout>
