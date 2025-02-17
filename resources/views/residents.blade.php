@@ -9,7 +9,6 @@
                 <button class="px-3 py-1 bg-green-700 text-white text-sm rounded-full ">+Add</button>
             </div>
 
-            <!-- web -->
             <table class="w-full mt-6 shadow-lg">
                 <thead class="bg-green-500 text-white shadow-lg">
                     <tr>
@@ -43,7 +42,6 @@
                 </tbody>
             </table>
 
-            <!-- mobile -->
         </div>
 
     </div>

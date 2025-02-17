@@ -1,7 +1,7 @@
 <x-app-layout>
-    <div class="p-16">
+    <div class="ml-16 max-w-5xl p-10">
         <p class="text-md font-semibold pb-6">Dashboard</p>
-        <div class="grid grid-cols-1 gap-1 md:grid-cols-3 sm:gap-2 ">
+        <div class="container grid grid-cols-1 gap-5 md:grid-cols-3 sm:gap-3 ">
 
             <!-- population -->
             <div class="col-span-1 bg-purple-500 text-white p-6 rounded-2xl shadow-lg w-72">

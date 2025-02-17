@@ -31,10 +31,9 @@
 
         <!-- Page Content -->
         <main>
-            <div class="flex sm:w-full relative group-hover:border-b-2 max-h-screen">
+            <div class="flex sm:w-full relative group-hover:border-b-2 h-full">
                 <!-- SIDEBAR on WEB-->
-                <x-sidebar />
-
+                <x-responsive-sidebar />
                 <!-- mobile size -->
                 .
                 <div class="w-full">

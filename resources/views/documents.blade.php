@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="md:p-16 p-6">
         <!-- documents -->
-        <div class="w-full border border-gray-300 rounded-md">
+        <div class="max-w-5xl ml-12 border border-gray-200 rounded-md shadow-lg">
             <div class="flex items-center justify-between gap-x-3 bg-green-200  p-6 rounded-md shadow-xl">
                 <h3 class="font-semibold text-xl">Printing Documents</h3>
                 <button class="px-3 py-1 bg-green-700 text-white rounded-full">Upload+</button>

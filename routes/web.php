@@ -35,6 +35,14 @@ Route::get('/logs', function () {
     return view('logs');
 })->middleware(['auth', 'verified'])->name('logs');
 
+Route::get('/info', function () {
+    return view('resident-information');
+})->middleware(['auth', 'verified'])->name('resident-information');
+
+Route::get('/add-resident', function () {
+    return view('add-resident');
+})->middleware(['auth', 'verified'])->name('add-resident');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
