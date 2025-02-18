@@ -20,6 +20,7 @@
             </svg>
             <x-text-input id="email" placeholder="Username" class="block mt-1 w-full placeholder:text-sm  pl-9"
                 type="email" name="email" required autocomplete="" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
 
         </div>
 
@@ -34,6 +35,7 @@
             </svg>
             <x-text-input id="password" placeholder="Password" class="block mt-1 w-full pl-9 placeholder:text-sm"
                 type="password" name="password" required autocomplete="current-password" />
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
 
         </div>
 

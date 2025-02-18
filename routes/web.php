@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResidentController;
+use App\Models\Officer;
+use App\Models\Resident;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,16 +17,23 @@ Route::get('/home', function () {
 })->middleware(['auth', 'verified'])->name('home');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+
+    $officers = Officer::all();
+
+    $residents = Resident::all();
+
+    return view('dashboard',[
+        'population' => $officers->merge($residents),
+        'officers' => $officers,
+        'females' => $residents->where('sex', 'female')
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/officers', function () {
-    return view('officers');
-})->middleware(['auth', 'verified'])->name('officers');
+// officer
+Route::get('/officers', [OfficerController::class, 'index'])->middleware(['auth', 'verified'])->name('officers');
+Route::get('/add-officer', [OfficerController::class, 'create'])->middleware(['auth', 'verified'])->name('add-officer');
+Route::post('/add-officer', [OfficerController::class, 'store'])->middleware(['auth', 'verified'])->name('add-officer');
 
-Route::get('/residents', function () {
-    return view('residents');
-})->middleware(['auth', 'verified'])->name('residents');
 
 Route::get('/documents', function () {
     return view('documents');
@@ -39,13 +51,12 @@ Route::get('/info', function () {
     return view('resident-information');
 })->middleware(['auth', 'verified'])->name('resident-information');
 
-Route::get('/add-resident', function () {
-    return view('add-resident');
-})->middleware(['auth', 'verified'])->name('add-resident');
+// residents
+Route::get('/add-resident', [ResidentController::class, 'create'])->middleware(['auth', 'verified'])->name('add-resident');
+Route::post('/add-resident', [ResidentController::class, 'store'])->middleware(['auth', 'verified'])->name('add-resident');
 
-Route::get('/add-officer', function () {
-    return view('add-officer');
-})->middleware(['auth', 'verified'])->name('add-officer');
+Route::get('/residents', [ResidentController::class, 'index'])->middleware(['auth', 'verified'])->name('residents');
+Route::get('/residents/{resident}', [ResidentController::class, 'show'])->middleware(['auth', 'verified'])->name('show-resident');
 
 
 

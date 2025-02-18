@@ -16,7 +16,7 @@
                             <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" />
                         </svg>
                     </div>
-                    <p class="text-4xl font-bold">51</p>
+                    <p class="text-4xl font-bold">{{ $population->count() }}</p>
                 </div>
             </div>
 
@@ -41,7 +41,7 @@
                             <path d="m16.9 15.2-.4-.9" />
                         </svg>
                     </div>
-                    <p class="text-4xl font-bold">51</p>
+                    <p class="text-4xl font-bold">{{ $officers->count() }}</p>
                 </div>
             </div>
 
@@ -58,7 +58,7 @@
                             <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" />
                         </svg>
                     </div>
-                    <p class="text-4xl font-bold">51</p>
+                    <p class="text-4xl font-bold">{{ $females->count() }} </p>
                 </div>
             </div>
         </div>
