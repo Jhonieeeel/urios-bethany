@@ -33,6 +33,8 @@ Route::get('/dashboard', function () {
 Route::get('/officers', [OfficerController::class, 'index'])->middleware(['auth', 'verified'])->name('officers');
 Route::get('/add-officer', [OfficerController::class, 'create'])->middleware(['auth', 'verified'])->name('add-officer');
 Route::post('/add-officer', [OfficerController::class, 'store'])->middleware(['auth', 'verified'])->name('add-officer');
+Route::get('/officers/{id}/edit', [OfficerController::class, 'edit'])->middleware(['auth', 'verified'])->name('edit-officer');
+Route::put('/officers/{id}', [OfficerController::class, 'update'])->middleware(['auth', 'verified'])->name('update-officer');
 
 
 Route::get('/documents', function () {

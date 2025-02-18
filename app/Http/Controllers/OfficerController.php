@@ -14,11 +14,11 @@ class OfficerController extends Controller
      */
     public function index()
     {
-        $officers = Officer::all();
+        $chancellor = Officer::where('officePosition', 'chancellor')->first();
 
-        
+        $officers = Officer::where('officePosition', '!=', 'chancellor')->get();
 
-        return view('officers', compact('officers'));
+        return view('officers', compact('chancellor', 'officers'));
     }
 
     /**
@@ -46,20 +46,19 @@ class OfficerController extends Controller
             'civilStatus' => ['required'],
             'contactNumber' => ['required'],
             'officePosition' => ['required'],
-            'dateAssumed' => ['required'],  
+            'dateAssumed' => ['required'],
+            'officerImage' => ['required', 'mimetypes:image/*'],
         ]);
 
-
-         $officer_age = array_merge(
-            $request->except('age'), 
-           ['age' => Carbon::parse($request->dateOfBirth)->age],
+        $officerData = array_merge(
+            $request->except(['officerImage', 'age']), 
+            [
+                'officerImage' => asset('storage/'.$request->file('officerImage')->store('', 'public')),
+                'age' => Carbon::parse($request->dateOfBirth)->age
+            ]
         );
-
-
-       
-
-        Officer::create($officer_age);
-        // dd(Carbon::parse($request->dateOfBirth)->age);
+        
+        Officer::create($officerData);
 
 
         return redirect()->route('officers');
@@ -78,7 +77,10 @@ class OfficerController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        
+        $officer = Officer::findOrFail($id);
+
+        return view('edit-officer', compact('officer'));
     }
 
     /**
@@ -86,7 +88,37 @@ class OfficerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+
+        $request->validate([
+            'firstname' => ['required', 'min:2'],
+            'middlename' => ['nullable', 'min:2'],
+            'lastname'=> ['required', 'min:2'],
+            'dateOfBirth' => ['required'],
+            'address' => ['required'],
+            'civilStatus' => ['required'],
+            'contactNumber' => ['required'],
+            'officePosition' => ['required'],
+            'dateAssumed' => ['required'],
+            'officerImage' => ['required', 'mimetypes:image/*'],
+        ]);
+
+        $officerData = array_merge(
+            $request->except(['officerImage', 'age']), 
+            [
+                'officerImage' => asset('storage/'.$request->file('officerImage')->store('', 'public')),
+                'age' => Carbon::parse($request->dateOfBirth)->age
+            ]
+        );
+
+        $officer = Officer::findOrFail($id);
+
+     
+
+        $officer->update($officerData);
+        
+
+        return redirect()->route('officers');
     }
 
     /**

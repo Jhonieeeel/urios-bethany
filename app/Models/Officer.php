@@ -19,6 +19,7 @@ class Officer extends Model
         'contactNumber',
         'officePosition',
         'dateAssumed',  
+        'officerImage'
     ];
 
 }

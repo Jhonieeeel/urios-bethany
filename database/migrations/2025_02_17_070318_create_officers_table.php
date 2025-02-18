@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('contactNumber');
             $table->string('officePosition');
             $table->string('dateAssumed');
+            $table->string('officerImage');
             $table->timestamps();
         });
     }

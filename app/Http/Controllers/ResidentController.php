@@ -54,7 +54,7 @@ class ResidentController extends Controller
 
         ]);
 
-        
+         
 
         $resident = array_merge(
             $request->except('residentImage'), 
