@@ -8,36 +8,46 @@
                 +</a>
         </div>
         <div class="flex justify-center sm:justify-start flex-wrap sm:no-wrap sm:gap-x-6 gap-y-6 items-start">
-            <div class="sm:basis-1/4 bg-gray-200 p-6 text-gray-700 rounded-2xl shadow-lg border">
-                <div class="flex justify-center gap-x-6 items-center relative">
-                    <p class="text-center text-md font-semibold">Chancellor</p>
-                    <a href="{{ route('edit-officer', $chancellor->id) }}"
-                        class="absolute underline top-0 right-0">Edit</a>
-                </div>
-                <div class="flex flex-col justify-center items-center p-6">
-                    <img src="{{ asset($chancellor->officerImage) }}" class="w-32 h-32 rounded-full" alt="">
+            <!-- chancellor -->
 
-                    <h4 class="text-md mt-2">{{ $chancellor->firstname }} {{ $chancellor->lastname }}</h4>
-                </div>
-                <div class="flex items-center justify-between gap-x-12">
-                    <div class="font-bold">
-                        <p>Age:</p>
-                        <p>Birthdate:</p>
-                        <p>Civil Status:</p>
-                        <p>Contact:</p>
-                        <p class="text-nowrap">Office Status:</p>
+            @if ($chancellor)
+                <div class="sm:basis-1/4 bg-gray-200 p-6 text-gray-700 rounded-2xl shadow-lg border">
+                    <div class="flex justify-center gap-x-6 items-center relative">
+                        <p class="text-center text-md font-semibold">Chancellor</p>
+                        <a href="{{ route('edit-officer', $chancellor->id) }}"
+                            class="absolute underline top-0 right-0">Edit</a>
                     </div>
-                    <div class="font-light">
-                        <p>{{ $chancellor->age }}</p>
-                        <p>{{ $chancellor->dateOfBirth }}</p>
-                        <p>{{ $chancellor->civilStatus }}</p>
-                        <p>{{ $chancellor->contactNumber }}</p>
-                        <p class="flex items-center gap-2">
-                            Active <span class="h-4 w-4 bg-green-400 rounded-full block"></span>
-                        </p>
+                    <div class="flex flex-col justify-center items-center p-6">
+                        <img src="{{ asset($chancellor->officerImage) }}" class="w-32 h-32 rounded-full" alt="">
+
+                        <h4 class="text-md mt-2">{{ $chancellor->firstname }} {{ $chancellor->lastname }}</h4>
+                    </div>
+                    <div class="flex items-center justify-between gap-x-12">
+                        <div class="font-bold">
+                            <p>Age:</p>
+                            <p>Birthdate:</p>
+                            <p>Civil Status:</p>
+                            <p>Contact:</p>
+                            <p class="text-nowrap">Office Status:</p>
+                        </div>
+                        <div class="font-light">
+                            <p>{{ $chancellor->age }}</p>
+                            <p>{{ $chancellor->dateOfBirth }}</p>
+                            <p>{{ $chancellor->civilStatus }}</p>
+                            <p>{{ $chancellor->contactNumber }}</p>
+                            <p class="flex items-center gap-2">
+                                Active <span class="h-4 w-4 bg-green-400 rounded-full block"></span>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @else
+                <div class="sm:basis-1/4 bg-gray-200 p-6 text-gray-700 rounded-2xl shadow-lg border">
+                    <h3 class="font-semibold">No Chancellor Yet.</h3>
+                </div>
+            @endif
+
+            <!-- other officers -->
             <div class="basis-1/4 sm:basis-2/4 grid sm:grid-cols-2 gap-6  col-span-1">
                 @if ($officers->count() > 0)
                     @foreach ($officers as $officer)
@@ -48,7 +58,8 @@
                                 <div class="p-2">
                                     <span class="flex items-start justify-between gap-x-6">
                                         <p class="font-semibold text-md">{{ $officer->officePosition }}</p>
-                                        <a href="#" class="text-xs underline">Edit</a>
+                                        <a href="{{ route('edit-officer', $officer->id) }}"
+                                            class="text-xs underline">Edit</a>
                                     </span>
                                     <p>Sr.{{ $officer->firstname }} <span class="block">{{ $officer->lastname }}
                                         </span></p>
@@ -76,7 +87,7 @@
                     @endforeach
                 @else
                     <div class="bg-gray-200 text-gray-800 p-3 rounded-2xl shadow-lg w-72">
-                        No officers yet
+                        <h3 class="font-semibold">No officers yet</h3>
                     </div>
                 @endif
 

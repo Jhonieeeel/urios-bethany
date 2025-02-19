@@ -1,13 +1,12 @@
 <x-app-layout>
     <div class="sm:px-16 sm:py-6">
         <!-- Add officer -->
-        {{ $errors }}
         <form action="{{ route('add-officer') }}" method="post" class="max-w-4xl shadow-xl m-6 border p-6"
             enctype="multipart/form-data">
             @csrf
             <p class="font-bold text-xl text-green-600 text-center pb-6">Officer Information</p>
             <!-- form -->
-            <div class="grid grid-cols-3 gap-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                 <div class="p-2">
                     <label for="firstname" class="text-green-600">First Name</label>
                     <x-text-input id="firstname" placeholder="" class="block mt-1 w-full placeholder:text-sm pl-9"
@@ -57,7 +56,7 @@
 
                 </div>
             </div>
-            <div class="flex items-end justify-around py-2">
+            <div class="flex  flex-wrap items-end justify-around py-2">
                 <!-- img -->
                 <div class="flex flex-col items-center justify-center pt-6">
                     <small class="text-green-600">Upload Image</small>
@@ -79,7 +78,7 @@
                         adherence to the principles of transparency, legitimate purpose and proportionality.</p>
                 </div>
             </div>
-            <div class="flex justify-end items-center py-3 px-6 gap-3 text-white">
+            <div class="flex justify-center sm:justify-end sm:items-center py-3 px-6 gap-3 text-white">
                 <!-- cancel -->
                 <a href="{{ route('officers') }}" type="reset"
                     class="bg-gray-500 rounded-full px-4 py-1">Cancel</a>
