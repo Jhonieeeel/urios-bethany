@@ -11,21 +11,22 @@
         @csrf
 
         <!-- username / email -->
-        <div class="relative flex items-center">
+        <div class="relative">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-user absolute m-2 top-1">
                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
             </svg>
+
             <x-text-input id="email" placeholder="Username" class="block mt-1 w-full placeholder:text-sm  pl-9"
                 type="email" name="email" required autocomplete="" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-input-error :messages="$errors->get('email')" class="px-3 py-1 text-xs" />
 
         </div>
 
         <!-- password -->
-        <div class="relative flex items-center">
+        <div class="relative">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-key absolute m-2 top-1">
@@ -35,7 +36,7 @@
             </svg>
             <x-text-input id="password" placeholder="Password" class="block mt-1 w-full pl-9 placeholder:text-sm"
                 type="password" name="password" required autocomplete="current-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <x-input-error :messages="$errors->get('password')" class="px-3 py-1 text-xs" />
 
         </div>
 

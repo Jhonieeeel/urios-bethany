@@ -30,12 +30,22 @@ Route::get('/dashboard', function () {
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// officer
+// officers
 Route::get('/officers', [OfficerController::class, 'index'])->middleware(['auth', 'verified'])->name('officers');
-Route::get('/add-officer', [OfficerController::class, 'create'])->middleware(['auth', 'verified'])->name('add-officer');
+
+//  officer form
+Route::get('/officer/add', [OfficerController::class, 'create'])->middleware(['auth', 'verified'])->name('create-officer');
+
+// add officer
 Route::post('/add-officer', [OfficerController::class, 'store'])->middleware(['auth', 'verified'])->name('add-officer');
+
+// officer updateForm
 Route::get('/officers/{id}/edit', [OfficerController::class, 'edit'])->middleware(['auth', 'verified'])->name('edit-officer');
+
+// update officer
 Route::put('/officers/{id}', [OfficerController::class, 'update'])->middleware(['auth', 'verified'])->name('update-officer');
+
+// delete officer
 Route::delete("/officers/{id}", [OfficerController::class, 'destroy'])->middleware(['auth', 'verified'])->name('delete-officer');
 
 Route::get('/documents', function () {
@@ -68,6 +78,11 @@ Route::get('/residents', [ResidentController::class, 'index'])->middleware(['aut
 Route::get('/residents/{resident}', [ResidentController::class, 'show'])->middleware(['auth', 'verified'])->name('show-resident');
 
 
+Route::get('/resident/{resident}/edit', [ResidentController::class, 'edit'])->middleware(['auth', 'verified'])->name('editResident');
+Route::put('/resident/{resident}', [ResidentController::class, 'update'])->middleware(['auth', 'verified'])->name('updateResident');
+
+
+Route::delete('/resident/{id}', [ResidentController::class, 'destroy'])->middleware(['auth', 'verified'])->name('deleteResident');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

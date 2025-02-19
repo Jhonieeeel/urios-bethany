@@ -46,7 +46,7 @@
                 </div>
                 <!-- image -->
                 <div class="flex flex-col items-center justify-center gap-6">
-                    <img src="{{ asset($resident->residentImage) }}" class="w-32 h-32" alt="">
+                    <img src="{{ asset($resident->residentImage) }}" class="w-32 h-32 userImage" alt="">
                     <div class="space-y-3">
                         <h3 class="font-semibold">Case Status</h3>
                         <p class="w-full border border-gray-700 bg-gray-100 text-center rounded-full text-sm px-3 py-1">
@@ -56,9 +56,14 @@
             </div>
             <div class="flex justify-end items-center gap-x-3 text-white pr-6">
                 <!-- cancel -->
-                <button type="reset" class="bg-gray-500 rounded-full px-4 py-1">Remove</button>
+                <form method="post" action="{{ route('deleteResident', $resident->id) }}">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="bg-gray-500 rounded-full px-4 py-1">Delete</button>
+                </form>
                 <!-- save -->
-                <button type="submit" class="bg-green-700 rounded-full px-4 py-1">Update</button>
+                <a href="{{ route('editResident', $resident->id) }}"
+                    class="bg-green-700 rounded-full px-4 py-1">Updates</a>
             </div>
         </div>
     </div>

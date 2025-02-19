@@ -66,7 +66,7 @@
                 <div class="flex flex-col items-center justify-center pt-6">
                     <small class="text-green-600">Upload Image</small>
                     <img id="imageHolder" src="{{ asset($officer->officerImage) }}"
-                        class="shadow-lg w-[150px] h-[150px]" alt="">
+                        class="shadow-lg w-[150px] h-[150px] userImage" alt="">
                     <label
                         class="flex items-center space-x-2 px-4 py-2 my-2 bg-green-600 text-white rounded-lg cursor-pointer hover:bg-green-700">
                         <span class="">Choose File</span>

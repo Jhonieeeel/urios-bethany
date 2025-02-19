@@ -47,6 +47,7 @@
                 <!-- mobile size -->
                 .
                 <div class="w-full">
+                    <!-- <div class="ml-24"> {{ Route::currentRouteName() }}</div> -->
                     {{ $slot }}
                 </div>
             </div>

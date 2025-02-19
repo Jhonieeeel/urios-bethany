@@ -16,16 +16,19 @@ class EventController extends Controller
         return view('calendar');
     }
 
+
+    
     public function getEvents(Request $request)
     {
-
-       
-        $events = Event::whereDate('start', '>=',  $request->start)
-            ->whereDate('end', '<', $request->end)
+            $events = Event::whereDate('start', '>=',  Carbon::parse($request->start))
+            ->whereDate('end', '<=', Carbon::parse($request->end))
             ->get();
+
     
+        // Return the events as JSON
         return response()->json($events);
     }
+        
 
     /**
      * Show the form for creating a new resource.
@@ -47,11 +50,9 @@ class EventController extends Controller
 
         $eventDates = explode(' - ', $events['daterange']);
 
-        $startDate = Carbon::parse($eventDates[0])->toDateTimeString(); // Ensures the correct format
+        $startDate = Carbon::parse($eventDates[0])->toDateTimeString();
         $endDate = Carbon::parse($eventDates[1])->toDateTimeString();  
        
-        
-        
         // Create the event
         Event::create([
             'title' => $events['eventName'],
@@ -59,7 +60,7 @@ class EventController extends Controller
             'end' => $endDate,
         ]);
 
-       return redirect()->route('getEvents');
+       return redirect()->route('calendar');
 
     }
 
@@ -77,7 +78,6 @@ class EventController extends Controller
     public function edit(string $id)
 
     {
-
         $eventData = Event::findOrFail($id);
 
         return view('edit-event-calendar', compact('eventData'));

@@ -86,7 +86,9 @@ class ResidentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $resident = Resident::findOrFail($id);
+
+        return view('update-resident', compact('resident'));
     }
 
     /**
@@ -94,7 +96,35 @@ class ResidentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'firstname' => ['required', 'min:2'],
+            'middlename' => ['required', 'min:2'],
+            'lastname' => ['required', 'min:2'],
+            'age' => ['required', 'numeric', 'gt:18'],
+            'sex' => ['required'],
+            'address' => ['required'],
+            'contactNumber' => ['required', 'min:11'],
+            'incidentDate' => ['required', 'min:6'],
+            'incidentTime' => ['required'],
+            'admissionDate' => 'required', ['min:6'],
+            'reportDate' => ['required'],
+            'natureOfTheCrime' => ['required'],
+            'caseStatus' => ['required'],
+            'residentImage' => ['required', 'mimetypes:image/*'],
+
+        ]);
+
+        $residentData = Resident::findOrFail($id);
+
+        $resident = array_merge(
+            $request->except('residentImage'), 
+            ['residentImage' => asset('storage/'.$request->file('residentImage')->store('', 'public'))],
+        );
+
+         $residentData->update($resident);
+
+
+        return redirect()->route('residents');
     }
 
     /**
@@ -102,6 +132,10 @@ class ResidentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $resident = Resident::findOrFail($id);
+
+        $resident->delete();
+
+        return redirect()->route('residents');
     }
 }

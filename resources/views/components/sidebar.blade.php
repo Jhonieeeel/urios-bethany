@@ -1,9 +1,16 @@
+@props(['active'])
+
+@php
+    $classes = $active ?? false ? 'group-bg-green-700 group-text-white' : '';
+@endphp
+
 <div
     class="bg-gray-200 fixed min-h-screen z-50 w-[52px] transition-all hover:w-[250px] hover:rounded-r-xl shadow-lg border-r border-gray-300 group">
     <ul
         class="overflow-x-hidden flex flex-col space-y-3 group-hover:justify-start overflow-hidden px-1  items-center py-3">
         <!-- Home -->
-        <li class="flex items-center hover:bg-green-700 transition-all  hover:text-white w-full rounded-full ">
+        <li
+            class=" {{ request()->routeIs('home') ? 'active active:bg-green-700 active:text-white' : '' }} flex items-center hover:bg-green-700 transition-all  hover:text-white w-full rounded-full">
             <div class="bg-green-700 p-2 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -30,7 +37,8 @@
             <span class="pl-3">Dashboard</span>
         </li>
         <!-- Officers -->
-        <li class="flex items-center hover:bg-green-700 transition-all  hover:text-white w-full rounded-full ">
+        <li
+            class="flex items-center hover:bg-green-700 transition-all  hover:text-white w-full rounded-full {{ Route::is('officers') ? 'active' : '' }}">
             <div class="bg-green-700 p-2 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

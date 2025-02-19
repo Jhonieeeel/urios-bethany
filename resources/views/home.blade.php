@@ -5,9 +5,9 @@
     <div class="py-9 w-full background-image-2 "
         style="background-image: url({{ asset('images/background-image-2.png') }});">
         <!-- content -->
-        <div class="w-full mx-auto text-gray-50 py-6 overflow-x-auto">
-            <h2 class="text-2xl text-center font-bold text-gray-100 mb-6">About Bethany Home</h2>
-            <div class="text-gray-300 space-y-6">
+        <div class="w-full mx-auto py-6 overflow-x-auto">
+            <h2 class="text-2xl text-white text-center font-bold text-gray-100 mb-6">About Bethany Home</h2>
+            <div class="text-white space-y-6">
                 <p class="sm:max-w-5xl mx-auto font-light px-12 sm:px-3">Bethany Home (VAW-C) is a temporary shelter for
                     female
                     children
@@ -44,7 +44,7 @@
     </div>
 
     <!-- mission/vision -->
-    <div class="max-w-7xl sm:flex  sm:items-start sm:justify-around mx-auto space-x-9 p-6">
+    <div class="max-w-5xl flex sm:items-start sm:justify-around mx-auto space-x-9 p-9 sm:p-6">
         <div class="mission px-16 sm:px-12">
             <div class="flex justify-center mt-5 mb-7">
                 <span class="bg-green-700 text-white px-9 py-1 rounded-full mx-auto ">Mission</span>
@@ -92,9 +92,9 @@
     </div>
 
     <!-- gallery -->
-    <div class="max-w-7xl mx-auto mt-16">
+    <div class="max-w-6xl mx-auto mt-16 flex flex-col items-center">
         <p class="text-center font-bold text-xl py-6">Gallery</p>
-        <div class="flex justify-center flex-wrap gap-2">
+        <div class="flex sm:justify-center flex-wrap gap-2">
             <div>
                 <img src="{{ asset('images/gallery-1.png') }}" alt="">
             </div>

@@ -3,7 +3,7 @@
     <div class="p-6 m-24 max-w-7xl">
         <div class="flex justify-start items-center pb-9 px-2">
             <h3 class="font-bold text-xl">Officers</h3>
-            <a href="{{ route('add-officer') }}"
+            <a href="{{ route('create-officer') }}"
                 class="bg-green-700 ml-auto sm:ml-12 px-6 py-1 text-white rounded-full">Add
                 +</a>
         </div>
@@ -18,7 +18,8 @@
                             class="absolute underline top-0 right-0">Edit</a>
                     </div>
                     <div class="flex flex-col justify-center items-center p-6">
-                        <img src="{{ asset($chancellor->officerImage) }}" class="w-32 h-32 rounded-full" alt="">
+                        <img src="{{ asset($chancellor->officerImage) }}" class="userImage w-32 h-32 rounded-full"
+                            alt="">
 
                         <h4 class="text-md mt-2">{{ $chancellor->firstname }} {{ $chancellor->lastname }}</h4>
                     </div>
