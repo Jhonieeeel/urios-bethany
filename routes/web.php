@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResidentController;
@@ -10,7 +11,7 @@ use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/home', function () {
@@ -62,9 +63,12 @@ Route::put("/calendar/{id}", [EventController::class, 'update'])->middleware(['a
 Route::delete("/calendar/{id}", [EventController::class, 'destroy'])->middleware(['auth', 'verified'])->name('deleteCalendarEvent');
 
 
-Route::get('/logs', function () {
-    return view('logs');
-})->middleware(['auth', 'verified'])->name('logs');
+
+ 
+
+Route::get("/logs", [LogController::class, 'index'])->middleware(['auth', 'verified'])->name('logs');
+Route::delete("/logs", [LogController::class, 'destroy'])->middleware(['auth', 'verified'])->name('deleteLogs');
+
 
 Route::get('/info', function () {
     return view('resident-information');

@@ -13,26 +13,33 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-300">
-                    <tr class="odd:bg-gray-100 text-center font-semibold">
-                        <td class="p-2 text-sm text-gray-700">2024/7/11</td>
-                        <td class="p-2 text-sm text-gray-700">Insert</td>
-                        <td class="p-2 text-sm text-gray-700">Admin Sheena</td>
-                        <td class="p-2 text-sm text-gray-700">User access resident information</td>
+                    @if ($activities->count() > 0)
+                        @foreach ($activities as $activity)
+                            <tr class="odd:bg-gray-100 even:bg-gray-300 text-center font-semibold">
+                                <td class="p-2 text-sm text-gray-700">{{ $activity->created_at }}</td>
+                                <td class="p-2 text-sm text-gray-700">{{ $activity->event }}</td>
+                                <td class="p-2 text-sm text-gray-700">Admin {{ Auth::user()->name }}</td>
+                                <td class="p-2 text-sm text-gray-700">{{ $activity->description }}</td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr class="odd:bg-gray-100 w-full text-center mx-auto vert">
+                            <td colspan="6" class="p-2 text-sm text-gray-700 font-medium">
+                                No event logs yet.
+                            </td>
+                        </tr>
+                    @endif
 
-                    </tr>
-                    <tr class="even:bg-gray-300 text-center font-semibold">
-                        <td class="p-2 text-sm text-gray-700">2024/7/11</td>
-                        <td class="p-2 text-sm text-gray-700">Insert</td>
-                        <td class="p-2 text-sm text-gray-700">Admin Shawn</td>
-                        <td class="p-2 text-sm text-gray-700">User access resident information</td>
-                    </tr>
                 </tbody>
             </table>
 
-            <div class="flex justify-end items-start">
-                <button class="bg-green-700 hover:bg-green-800 ml-auto text-white px-3 py-1 rounded-xl mt-6">Clear
+            <form method="post" action="{{ route('deleteLogs') }}" class="flex justify-end items-start">
+                @csrf
+                @method('delete')
+                <button type="submit"
+                    class="bg-green-700 hover:bg-green-800 ml-auto text-white px-3 py-1 rounded-xl mt-6">Clear
                     Cache</button>
-            </div>
+            </form>
         </div>
     </div>
 </x-app-layout>

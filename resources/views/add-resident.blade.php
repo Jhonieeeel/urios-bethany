@@ -55,10 +55,17 @@
                 </div>
                 <div class="p-2">
                     <label for="sex" class="text-green-600">Sex</label>
-                    <x-text-input id="sex"
-                        class="block mt-1 w-full focus:border-green-500 focus:ring-green-500 pl-9" type="text"
-                        name="sex" required autocomplete="" />
+                    <select
+                        class="block mt-1 w-full rounded-full border-gray-300 focus:border-green-500 focus:ring-green-500 pl-9"
+                        name="sex" id="sex">
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
                     <x-input-error :messages="$errors->get('sex')" class="mt-2" />
+                    <!-- <x-text-input id="sex"
+                        class="block mt-1 w-full focus:border-green-500 focus:ring-green-500 pl-9" type="text"
+                        name="sex" required autocomplete="" /> -->
 
                 </div>
                 <div class="p-2">
@@ -124,10 +131,8 @@
                         class="block mt-1 w-full focus:border-green-500 focus:ring-green-500  pl-9" type="text"
                         name="caseStatus" required autocomplete="" />
                 </div>
-
             </div>
             <div class="flex justify-between px-7 py-2 items-center gap-x-6 flex-wrap">
-
                 <div class="text-red-500 max-w-lg">
                     <h3 class="font-semibold">DATA PRIVACY ACT OF 2012</h3>
                     <p class="text-sm">

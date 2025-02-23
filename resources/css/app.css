@@ -7,11 +7,11 @@
 }
 
 .fc-day-today {
-    @apply !bg-blue-500 text-white;
+    @apply !bg-green-500 text-white;
 }
 
 .fc-event {
-    @apply !bg-green-500 text-white;
+    @apply !bg-blue-500 text-white;
 }
 .userImage {
     @apply bg-cover bg-center;

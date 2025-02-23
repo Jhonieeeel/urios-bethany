@@ -46,8 +46,21 @@
                 </div>
                 <div class="p-2">
                     <label for="officePosition" class="text-green-600">Office Position</label>
-                    <x-text-input id="officePosition" placeholder="" class="block mt-1 w-full placeholder:text-sm pl-9"
-                        type="text" name="officePosition" required autocomplete="" />
+
+                    @php
+                        $positions = ['chancellor', 'president', 'vice president', 'secretary', 'treasurer'];
+                    @endphp
+
+                    <select name="officePosition" id="officePosition"
+                        class="block mt-1 w-full placeholder:text-sm pl-9 rounded-full">
+                        <option class="text-gray-400" value="" disabled selected>Select Position</option>
+                        @foreach ($positions as $position)
+                            @if (\App\Models\Officer::where('officePosition', $position)->count() == 0)
+                                <option class="capitalize" value="{{ $position }}">{{ $position }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+
                 </div>
                 <div class="p-2 ">
                     <label for="dateAssumed" class="text-green-600">Date Assumed in Office</label>
@@ -80,8 +93,7 @@
             </div>
             <div class="flex justify-center sm:justify-end sm:items-center py-3 px-6 gap-3 text-white">
                 <!-- cancel -->
-                <a href="{{ route('officers') }}" type="reset"
-                    class="bg-gray-500 rounded-full px-4 py-1">Cancel</a>
+                <a href="{{ route('officers') }}" class="bg-gray-500 rounded-full px-4 py-1">Cancel</a>
                 <!-- save -->
                 <button type="submit" class="bg-green-700 rounded-full px-4 py-1">Submit</button>
             </div>

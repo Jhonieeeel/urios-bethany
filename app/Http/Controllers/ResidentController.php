@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Resident;
+use Illuminate\Validation\Rule;
 
 class ResidentController extends Controller
 {
@@ -101,7 +102,7 @@ class ResidentController extends Controller
             'middlename' => ['required', 'min:2'],
             'lastname' => ['required', 'min:2'],
             'age' => ['required', 'numeric', 'gt:18'],
-            'sex' => ['required'],
+            'sex' => ['required', Rule::in(['male', 'female'])],
             'address' => ['required'],
             'contactNumber' => ['required', 'min:11'],
             'incidentDate' => ['required', 'min:6'],
@@ -110,16 +111,21 @@ class ResidentController extends Controller
             'reportDate' => ['required'],
             'natureOfTheCrime' => ['required'],
             'caseStatus' => ['required'],
-            'residentImage' => ['required', 'mimetypes:image/*'],
-
+            'residentImage' => ['nullable', 'mimetypes:image/*'],
         ]);
 
         $residentData = Resident::findOrFail($id);
 
-        $resident = array_merge(
-            $request->except('residentImage'), 
-            ['residentImage' => asset('storage/'.$request->file('residentImage')->store('', 'public'))],
-        );
+        if ($request->has('residentImage')) {
+            $resident = array_merge(
+                $request->except('residentImage'), 
+                ['residentImage' => asset('storage/'.$request->file('residentImage')->store('', 'public'))],
+            );
+        }else {
+            $resident = $request->except('residentImage');
+        }
+
+        
 
          $residentData->update($resident);
 

@@ -92,9 +92,9 @@
     </div>
 
     <!-- gallery -->
-    <div class="max-w-6xl mx-auto mt-16 flex flex-col items-center">
+    <div class="w-full mx-auto mt-16 flex flex-col items-center">
         <p class="text-center font-bold text-xl py-6">Gallery</p>
-        <div class="flex sm:justify-center flex-wrap gap-2">
+        <div class="flex sm:justify-center flex-wrap gap-2 sm:max-w-3xl md:max-w-4xl lg:max-w-6xl">
             <div>
                 <img src="{{ asset('images/gallery-1.png') }}" alt="">
             </div>
