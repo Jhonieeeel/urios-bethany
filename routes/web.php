@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\OfficerController;
@@ -49,10 +50,12 @@ Route::put('/officers/{id}', [OfficerController::class, 'update'])->middleware([
 // delete officer
 Route::delete("/officers/{id}", [OfficerController::class, 'destroy'])->middleware(['auth', 'verified'])->name('delete-officer');
 
-Route::get('/documents', function () {
-    return view('documents');
-})->middleware(['auth', 'verified'])->name('documents');
 
+Route::get('/documents', [DocumentController::class, 'index'])->middleware(['auth', 'verified'])->name('documents');
+// Route::get('/documents/{id}', [DocumentController::class, 'show'])->middleware(['auth', 'verified'])->name('documents.show');
+Route::get('/documents/{id}', [DocumentController::class, 'show'])->middleware(['auth', 'verified'])->name('documents.show');
+Route::get('/document/create', [DocumentController::class, 'create'])->middleware(['auth', 'verified'])->name('documents.create');
+Route::post('/documents', [DocumentController::class, 'store'])->middleware(['auth', 'verified'])->name('documents.store');
 
 // calendar 
 Route::get("/calendar", [EventController::class, 'index'])->middleware(['auth', 'verified'])->name('calendar');

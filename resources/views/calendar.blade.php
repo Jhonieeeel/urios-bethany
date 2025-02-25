@@ -25,9 +25,6 @@
                             Event</button>
                     </div>
                 </form>
-                <div>
-                    <!-- DIsplay Event as a Card?? -->
-                </div>
             </div>
             <div class="sm:basis-2/4 border shadow-xl p-6">
                 <div id="calendar"></div>

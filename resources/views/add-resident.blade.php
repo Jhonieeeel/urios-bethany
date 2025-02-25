@@ -1,5 +1,4 @@
 <x-app-layout>
-    {{ $errors }}
     <div class="px-24 p-6">
         <!-- forms -->
         <form action="{{ route('add-resident') }}" method="post"
