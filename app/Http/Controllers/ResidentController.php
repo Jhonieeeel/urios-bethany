@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Resident;
 use Illuminate\Validation\Rule;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ResidentController extends Controller
 {
@@ -14,11 +15,11 @@ class ResidentController extends Controller
      */
     public function index()
     {
-        // show all residents
+        $residents = QueryBuilder::for(Resident::class)
+            ->allowedFilters(['firstname'])
+            ->paginate();
 
-        $residents = Resident::paginate(5);
-
-        return view('residents', ['residents' => $residents]); 
+        return view('residents', ['residents' => $residents]);
     }
 
     /**
@@ -47,7 +48,8 @@ class ResidentController extends Controller
             'contactNumber' => ['required', 'min:11'],
             'incidentDate' => ['required', 'min:6'],
             'incidentTime' => ['required'],
-            'admissionDate' => 'required', ['min:6'],
+            'admissionDate' => 'required',
+            ['min:6'],
             'reportDate' => ['required'],
             'natureOfTheCrime' => ['required'],
             'caseStatus' => ['required'],
@@ -55,18 +57,17 @@ class ResidentController extends Controller
 
         ]);
 
-         
+
 
         $resident = array_merge(
-            $request->except('residentImage'), 
-            ['residentImage' => asset('storage/'.$request->file('residentImage')->store('', 'public'))],
+            $request->except('residentImage'),
+            ['residentImage' => asset('storage/' . $request->file('residentImage')->store('', 'public'))],
         );
 
         Resident::create($resident);
 
 
         return redirect()->route('residents');
-     
     }
 
     /**
@@ -75,11 +76,9 @@ class ResidentController extends Controller
     public function show(Resident $resident)
     {
 
-        // dd($resident);      
+        // dd($resident);
 
-       return view('resident-information', compact('resident'));
-        
-
+        return view('resident-information', compact('resident'));
     }
 
     /**
@@ -107,7 +106,8 @@ class ResidentController extends Controller
             'contactNumber' => ['required', 'min:11'],
             'incidentDate' => ['required', 'min:6'],
             'incidentTime' => ['required'],
-            'admissionDate' => 'required', ['min:6'],
+            'admissionDate' => 'required',
+            ['min:6'],
             'reportDate' => ['required'],
             'natureOfTheCrime' => ['required'],
             'caseStatus' => ['required'],
@@ -118,16 +118,16 @@ class ResidentController extends Controller
 
         if ($request->has('residentImage')) {
             $resident = array_merge(
-                $request->except('residentImage'), 
-                ['residentImage' => asset('storage/'.$request->file('residentImage')->store('', 'public'))],
+                $request->except('residentImage'),
+                ['residentImage' => asset('storage/' . $request->file('residentImage')->store('', 'public'))],
             );
-        }else {
+        } else {
             $resident = $request->except('residentImage');
         }
 
-        
 
-         $residentData->update($resident);
+
+        $residentData->update($resident);
 
 
         return redirect()->route('residents');
