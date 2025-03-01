@@ -5,18 +5,23 @@
             @php
                 $center_head = $officers->where('officePosition', 'Center Head');
                 $psychologist = $officers->where('officePosition', 'Part Time Psychologist');
-                $book_keeper = $officers->where('officePosition', 'Book Keeper');
-                $finance_officer = $officers->where('officePosition', 'Finance Officer');
+                $book_keeper = $officers->where('officePosition', 'Part Time Psychologist');
+                $finance_officer = $officers->where('officePosition', 'Part Time Psychologist');
+
                 $other_officers = $officers->where('officePosition', 'Officer');
+
+                $registered_other_officers = $other_officers->count();
+
             @endphp
+
+            <a class="ml-16" href="{{ route('create-officer') }}">TEEEST</a>
 
             <!-- center head -->
             @if ($center_head->count() > 0)
                 @foreach ($center_head as $officer)
-                    <a href="{{ route('edit-officer', $officer->id) }}">
+                    <a href="{{ route('officer.show', $officer->id) }}">
                         <div class="overflow-hidden rounded-md shadow-lg transition hover:scale-[1.1]">
-                            <img src="{{ asset($officer->officerImage) }}"
-                                class="h-32 w-48 object-cover object-center sm:h-48 sm:w-64">
+                            <img src="{{ asset($officer->officerImage) }}" class="h-32 w-48 object-cover sm:h-48 sm:w-64">
                             <div class="m-4 text-center">
                                 <span
                                     class="font-semibold">{{ $officer->firstname . ' ' . $officer->middlename . ' ' . $officer->lastname }}</span>
@@ -40,10 +45,10 @@
             <!-- psychologist -->
             @if ($psychologist->count() > 0)
                 @foreach ($psychologist as $officer)
-                    <a href="{{ route('edit-officer', $officer->id) }}">
+                    <a href="{{ route('officer.show', $officer->id) }}">
                         <div class="overflow-hidden rounded-md shadow-lg transition hover:scale-[1.1]">
                             <img src="{{ asset($officer->officerImage) }}"
-                                class="h-32 w-48 object-cover object-center sm:h-48 sm:w-64">
+                                class="h-32 w-48 object-cover sm:h-48 sm:w-64">
                             <div class="m-4 text-center">
                                 <span
                                     class="font-semibold">{{ $officer->firstname . ' ' . $officer->middlename . ' ' . $officer->lastname }}</span>
@@ -68,7 +73,7 @@
                 <!-- Book Keeper -->
                 @if ($book_keeper->count() > 0)
                     @foreach ($book_keeper as $officer)
-                        <a href="{{ route('edit-officer', $officer->id) }}">
+                        <a href="{{ route('officer.show', $officer->id) }}">
                             <div class="overflow-hidden rounded-md shadow-lg transition hover:scale-[1.1]">
                                 <img src="{{ asset($officer->officerImage) }}"
                                     class="h-32 w-48 object-cover sm:h-48 sm:w-64">
@@ -96,7 +101,7 @@
                 <!-- Finance Officer -->
                 @if ($finance_officer->count() > 0)
                     @foreach ($finance_officer as $officer)
-                        <a href="{{ route('edit-officer', $officer->id) }}">
+                        <a href="{{ route('officer.show', $officer->id) }}">
                             <div class="overflow-hidden rounded-md shadow-lg transition hover:scale-[1.1]">
                                 <img src="{{ asset($officer->officerImage) }}"
                                     class="h-32 w-48 object-cover sm:h-48 sm:w-64">
@@ -126,7 +131,7 @@
             <div class="mt-6 flex flex-wrap items-center justify-center gap-12 sm:mt-12">
                 @if ($other_officers->count() > 0)
                     @foreach ($other_officers as $officer)
-                        <a href="{{ route('edit-officer', $officer->id) }}">
+                        <a href="{{ route('officer.show', $officer->id) }}">
                             <div class="overflow-hidden rounded-md shadow-lg transition hover:scale-[1.1]">
                                 <img src="{{ asset($officer->officerImage) }}"
                                     class="h-32 w-48 object-cover sm:h-48 sm:w-64">
@@ -139,7 +144,7 @@
                         </a>
                     @endforeach
 
-                    @for ($placeholder = $other_officers->count(); $placeholder < 5; $placeholder++)
+                    @for ($placeholder = 0; $placeholder < $other_officers->count(); $placeholder++)
                         <a href="{{ route('create-officer', ['position' => 'Officer']) }}">
                             <div class="overflow-hidden rounded-md shadow-lg transition hover:scale-[1.1]">
                                 <img src="{{ asset('images/no-picture.jpg') }}"

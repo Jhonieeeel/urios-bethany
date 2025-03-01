@@ -14,11 +14,9 @@ class OfficerController extends Controller
      */
     public function index()
     {
-        $chancellor = Officer::where('officePosition', 'chancellor')->first();
+       $officers = Officer::all();
 
-        $officers = Officer::where('officePosition', '!=', 'chancellor')->get();
-
-        return view('officers', compact('chancellor', 'officers'));
+        return view('officers', ['officers' => $officers]);
     }
 
     /**
@@ -45,7 +43,6 @@ class OfficerController extends Controller
             'address' => ['required'],
             'civilStatus' => ['required'],
             'contactNumber' => ['required'],
-            'officePosition' => ['required'],
             'dateAssumed' => ['required'],
             'officerImage' => ['required', 'mimetypes:image/*'],
         ]);
@@ -53,6 +50,7 @@ class OfficerController extends Controller
         $officerData = array_merge(
             $request->except(['officerImage', 'age']), 
             [
+                'officerPosition' => request('position'),
                 'officerImage' => asset('storage/'.$request->file('officerImage')->store('', 'public')),
                 'age' => Carbon::parse($request->dateOfBirth)->age
             ]
@@ -69,7 +67,9 @@ class OfficerController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $officer = Officer::findOrFail($id);
+
+        return view('officer-information', ['officer' => $officer]);
     }
 
     /**
@@ -98,7 +98,6 @@ class OfficerController extends Controller
             'address' => ['required'],
             'civilStatus' => ['required'],
             'contactNumber' => ['required'],
-            'officePosition' => ['required'],
             'dateAssumed' => ['required'],
             'officerImage' => ['required', 'mimetypes:image/*'],
         ]);
@@ -106,6 +105,7 @@ class OfficerController extends Controller
         $officerData = array_merge(
             $request->except(['officerImage', 'age']), 
             [
+               
                 'officerImage' => asset('storage/'.$request->file('officerImage')->store('', 'public')),
                 'age' => Carbon::parse($request->dateOfBirth)->age
             ]
@@ -126,6 +126,10 @@ class OfficerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $officer = Officer::findOrFail($id);
+
+        $officer->delete();
+
+        return redirect()->route('officers');
     }
 }

@@ -4,7 +4,7 @@
         <form action="{{ route('add-officer') }}" method="post" class="m-6 max-w-4xl border p-6 shadow-xl"
             enctype="multipart/form-data">
             @csrf
-            <p class="pb-6 text-center text-xl font-bold text-green-600">Officer Information</p>
+            <p class="text-1xl pb-6 text-center font-bold text-green-600">Officer Information</p>
             <!-- form -->
             <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
                 <div class="p-2">
@@ -26,7 +26,7 @@
                 <div class="p-2">
                     <label for="dateOfBirth" class="text-green-600">Date of Birth</label>
                     <input type="date" id="dateOfBirth" name="dateOfBirth"
-                        class="w-full rounded-full border border-green-300 px-4 py-2 focus:border-green-500 focus:ring-2 focus:ring-green-500">
+                        class="mt-1 w-full rounded-full border border-gray-300 px-4 py-2.5">
 
                 </div>
                 <div class="p-2">
@@ -45,28 +45,13 @@
                         type="text" name="contactNumber" required autocomplete="" />
                 </div>
                 <div class="p-2">
-                    <label for="officePosition" class="text-green-600">Office Position</label>
-
-                    @php
-                        $positions = ['chancellor', 'president', 'vice president', 'secretary', 'treasurer'];
-                    @endphp
-
-                    <select name="officePosition" id="officePosition"
-                        class="mt-1 block w-full rounded-full pl-9 placeholder:text-sm">
-                        <option class="text-gray-400" value="" disabled selected>Select Position</option>
-                        @foreach ($positions as $position)
-                            @if (\App\Models\Officer::where('officePosition', $position)->count() == 0)
-                                <option class="capitalize" value="{{ $position }}">{{ $position }}</option>
-                            @endif
-                        @endforeach
-                    </select>
-
-                </div>
-                <div class="p-2">
                     <label for="dateAssumed" class="text-green-600">Date Assumed in Office</label>
                     <input type="date" id="dateAssumed" name="dateAssumed"
-                        class="w-full rounded-full border border-green-300 px-4 py-2 focus:border-green-500 focus:ring-2 focus:ring-green-500">
-
+                        class="mt-1 w-full rounded-full border border-gray-300 px-4 py-2.5">
+                </div>
+                <div class="p-2">
+                    <x-text-input id="officePosition" class="mt-1 hidden w-full pl-9 placeholder:text-sm" type="text"
+                        name="officePosition" value="{{ request('position') }}" autocomplete="" />
                 </div>
             </div>
             <div class="flex flex-wrap items-end justify-around py-2">

@@ -35,8 +35,11 @@ Route::get('/dashboard', function () {
 // officers
 Route::get('/officers', [OfficerController::class, 'index'])->middleware(['auth', 'verified'])->name('officers');
 
+// officer
+Route::get('/officer/{id}', [OfficerController::class, 'show'])->middleware(['auth', 'verified'])->name('officer.show');
+
 //  officer form
-Route::get('/officer/add', [OfficerController::class, 'create'])->middleware(['auth', 'verified'])->name('create-officer');
+Route::get('/officers/add', [OfficerController::class, 'create'])->middleware(['auth', 'verified'])->name('create-officer');
 
 // add officer
 Route::post('/add-officer', [OfficerController::class, 'store'])->middleware(['auth', 'verified'])->name('add-officer');
@@ -66,6 +69,10 @@ Route::put("/calendar/{id}", [EventController::class, 'update'])->middleware(['a
 Route::delete("/calendar/{id}", [EventController::class, 'destroy'])->middleware(['auth', 'verified'])->name('deleteCalendarEvent');
 
 
+Route::get("/test", function () {
+    return view('test');
+});
+
 
  
 // logs
@@ -88,10 +95,10 @@ Route::get('/info', function () {
 
 Route::delete('/resident/{id}', [ResidentController::class, 'destroy'])->middleware(['auth', 'verified'])->name('deleteResident');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 require __DIR__.'/auth.php';
