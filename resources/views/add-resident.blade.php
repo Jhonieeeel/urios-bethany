@@ -2,13 +2,13 @@
     <div class="px-24 p-6">
         <!-- forms -->
         <form action="{{ route('add-resident') }}" method="post"
-            class="max-w-4xl mb-6 shadow-xl rounded-md border border-gray-300" enctype="multipart/form-data">
+            class="max-w-4xl mb-6 shadow-lg rounded-md" enctype="multipart/form-data">
             @csrf
             <!-- image -->
             <div class="flex flex-col items-center justify-center pt-6">
                 <p class="font-bold text-green-600 pb-3">RESIDENT INFORMATION</p>
                 <small class="text-green-600">Upload Image</small>
-                <img id="imageHolder" src="{{ asset('images/upload-image.png') }}" class="shadow-lg w-[150px] h-[150px]"
+                <img id="imageHolder" src="{{ asset('images/upload-image.png') }}" class="shadow-sm w-[150px] h-[150px]"
                     alt="">
                 <label
                     class="flex items-center space-x-2 px-4 py-2 my-2 bg-green-600 text-white rounded-lg cursor-pointer hover:bg-green-700">
@@ -112,9 +112,9 @@
                     <input type="date" id="admissionDate" name="admissionDate"
                         class="w-full px-4 py-2 border border-green-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 rounded-full">
                 </div>
-                <!-- Reporing Date -->
+                <!-- Reporting Date -->
                 <div class="p-2 ">
-                    <label for="reportDate" class="text-green-600">Reporing Date</label>
+                    <label for="reportDate" class="text-green-600">Reporting Date</label>
                     <input type="date" id="reportDate" name="reportDate"
                         class="w-full px-4 py-2 border border-green-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 rounded-full">
                 </div>

@@ -14,7 +14,7 @@
             <div class="bg-green-700 p-2 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-house rounded-full bg text-gray-200 bg-green-700">
+                    class="size-4 shrink-0 rounded-full bg text-gray-200 bg-green-700">
                     <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
                     <path
                         d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
@@ -23,11 +23,11 @@
             <span class="pl-3">Home</span>
         </li>
         <!-- Dashboard -->
-        <li class="flex items-center hover:bg-green-700 transition-all  hover:text-white w-full rounded-full ">
-            <div class="bg-green-700 p-2 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
+        <li class="flex items-center hover:bg-green-700 transition-all  hover:text-white w-full rounded-full">
+            <div class="bg-green-700 p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-layout-dashboard  rounded-full bg text-gray-200 bg-green-700">
+                    class="size-4 shrink-0 text-gray-200 bg-green-700">
                     <rect width="7" height="9" x="3" y="3" rx="1" />
                     <rect width="7" height="5" x="14" y="3" rx="1" />
                     <rect width="7" height="9" x="14" y="12" rx="1" />
@@ -42,7 +42,7 @@
             <div class="bg-green-700 p-2 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-user-cog   rounded-full bg text-gray-200 bg-green-700">
+                    class="size-2 shrink-0 rounded-full bg text-gray-200 bg-green-700">
                     <circle cx="18" cy="15" r="3" />
                     <circle cx="9" cy="7" r="4" />
                     <path d="M10 15H6a4 4 0 0 0-4 4v2" />
@@ -63,7 +63,7 @@
             <div class="bg-green-700 p-2 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-user-plus rounded-full bg text-gray-200 bg-green-700">
+                    class="size-4 shrink-0 rounded-full text-gray-200 bg-green-700">
                     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                     <circle cx="9" cy="7" r="4" />
                     <line x1="19" x2="19" y1="8" y2="14" />
@@ -77,7 +77,7 @@
             <div class="bg-green-700 p-2 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-files rounded-full bg text-gray-200 bg-green-700">
+                    class="size-4 shrink-0 rounded-full text-gray-200 bg-green-700">
                     <path d="M20 7h-3a2 2 0 0 1-2-2V2" />
                     <path d="M9 18a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h7l4 4v10a2 2 0 0 1-2 2Z" />
                     <path d="M3 7.6v12.8A1.6 1.6 0 0 0 4.6 22h9.8" />
@@ -90,7 +90,7 @@
             <div class="bg-green-700 p-2 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-calendar rounded-full bg text-gray-200 bg-green-700">
+                    class="size-4 shrink-0 rounded-full bg text-gray-200 bg-green-700">
                     <path d="M8 2v4" />
                     <path d="M16 2v4" />
                     <rect width="18" height="18" x="3" y="4" rx="2" />
@@ -104,7 +104,7 @@
             <div class="bg-green-700 p-2 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="lucide lucide-logs rounded-full bg text-gray-200 bg-green-700"">
+                    stroke-linejoin="round" class="size-4 shrink-0 rounded-full bg text-gray-200 bg-green-700"">
                     <path d="M13 12h8" />
                     <path d="M13 18h8" />
                     <path d="M13 6h8" />

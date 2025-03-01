@@ -1,4 +1,9 @@
 <x-app-layout>
+    @push('scripts')
+        <!-- full calendar -->
+        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    @endpush
+
     <div class="w-full">
         <div
             class="flex justify-center sm:justify-start flex-wrap sm:m-24 sm:no-wrap sm:gap-x-6 sm:gap-y-6 sm:items-start">

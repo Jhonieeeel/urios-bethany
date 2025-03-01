@@ -1,25 +1,22 @@
 <x-app-layout>
-    <div class="sm:p-16 m-16">
-
+    <div class="md:p-10 p-6">
         <!-- table -->
-
-        <div class="overflow-x-auto rounded-md shadow-sm bg-green-200 p-6">
+        <div class="ml-12 overflow-x-auto rounded-md shadow-sm bg-green-200 p-6">
             <!-- Reconds and Add Button Here -->
-            <div class="flex items-center justify-between gap-x-6 border-b border-b-gray-400 pb-6">
+            <div class="flex items-end justify-between gap-x-6 border-b border-b-gray-400 pb-4">
                 <h3 class="text-md font-semibold">Resident Records</h3>
                 <a href="{{ route('add-resident') }}"
-                    class="px-3 py-1 bg-green-700 text-white text-sm rounded-full ">+Add</a>
+                    class="px-3 py-1 bg-green-700 text-white rounded-full">Add+</a>
             </div>
-
-            <table class="w-full mt-6 shadow-lg">
-                <thead class="bg-green-500 text-black shadow-lg">
+            <table class="w-full mt-1">
+                <thead class="text-gray-900">
                     <tr>
                         <th class="p-2.5 text-sm font-semibold tracking-wide text-left">Resident ID</th>
                         <th class="p-2.5 text-sm font-semibold tracking-wide text-left">Incident Date</th>
                         <th class="p-2.5 text-sm font-semibold tracking-wide text-left">Location</th>
                         <th class="p-2.5 text-sm font-semibold tracking-wide text-left">Admission Date</th>
                         <th class="p-2.5 text-sm font-semibold tracking-wide text-left">Case Status</th>
-                        <th class="p-2.5 text-sm font-semibold tracking-wide text-left">Action</th>
+                        <th class="p-2.5 text-sm font-semibold tracking-wide text-right">Action</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
@@ -45,8 +42,8 @@
                             </tr>
                         @endforeach
                     @else
-                        <tr class="odd:bg-gray-100 w-full text-center mx-auto vert">
-                            <td colspan="6" class="p-2 text-sm text-gray-700 font-medium">
+                        <tr class="odd:bg-gray-100 w-full text-center mx-auto">
+                            <td colspan="6" class="py-3.5 text-sm text-gray-700 font-medium">
                                 No residents data yet.
                             </td>
                         </tr>
