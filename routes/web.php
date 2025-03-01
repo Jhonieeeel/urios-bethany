@@ -68,25 +68,22 @@ Route::delete("/calendar/{id}", [EventController::class, 'destroy'])->middleware
 
 
  
-
+// logs
 Route::get("/logs", [LogController::class, 'index'])->middleware(['auth', 'verified'])->name('logs');
 Route::delete("/logs", [LogController::class, 'destroy'])->middleware(['auth', 'verified'])->name('deleteLogs');
 
 
-Route::get('/info', function () {
-    return view('resident-information');
-})->middleware(['auth', 'verified'])->name('resident-information');
 
 // residents
 Route::get('/add-resident', [ResidentController::class, 'create'])->middleware(['auth', 'verified'])->name('add-resident');
 Route::post('/add-resident', [ResidentController::class, 'store'])->middleware(['auth', 'verified'])->name('add-resident');
-
 Route::get('/residents', [ResidentController::class, 'index'])->middleware(['auth', 'verified'])->name('residents');
 Route::get('/residents/{resident}', [ResidentController::class, 'show'])->middleware(['auth', 'verified'])->name('show-resident');
-
-
 Route::get('/resident/{resident}/edit', [ResidentController::class, 'edit'])->middleware(['auth', 'verified'])->name('editResident');
 Route::put('/resident/{resident}', [ResidentController::class, 'update'])->middleware(['auth', 'verified'])->name('updateResident');
+Route::get('/info', function () {
+    return view('resident-information');
+})->middleware(['auth', 'verified'])->name('resident-information');
 
 
 Route::delete('/resident/{id}', [ResidentController::class, 'destroy'])->middleware(['auth', 'verified'])->name('deleteResident');
@@ -95,10 +92,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
-    // auth
-
 });
 
 require __DIR__.'/auth.php';

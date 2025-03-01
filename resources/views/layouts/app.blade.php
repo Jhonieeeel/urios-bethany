@@ -28,13 +28,13 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100 relative ">
+    <div class="relative min-h-screen bg-gray-100">
         @include('layouts.navigation')
 
         <!-- Page Heading -->
         @isset($header)
             <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
             </header>
@@ -42,7 +42,7 @@
 
         <!-- Page Content -->
         <main>
-            <div class="flex sm:w-full relative group-hover:border-b-2 h-full">
+            <div class="relative flex h-full group-hover:border-b-2 sm:w-full">
                 <!-- SIDEBAR on WEB-->
                 <x-responsive-sidebar />
                 <!-- mobile size -->
@@ -57,4 +57,3 @@
 </body>
 
 </html>
-

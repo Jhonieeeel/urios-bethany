@@ -16,9 +16,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans text-gray-900 antialiase"
+<body class="antialiase font-sans text-gray-900"
     style="background-image: url('{{ asset('images/background-image-1.png') }}')">
-    <div class="min-h-screen flex flex-col sm:justify-center items-center  sm:pt-0">
+    <div class="flex min-h-screen flex-col items-center sm:justify-center sm:pt-0">
         <div>
             <!-- logo -->
             <div class="flex flex-col sm:justify-center">
@@ -27,16 +27,15 @@
         </div>
 
         <!-- form -->
-        <div class="w-full sm:max-w-md px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-3xl ">
+        <div class="w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-3xl">
             {{ $slot }}
         </div>
     </div>
 
     <footer class="flex justify-center p-3">
-        <small class="text-gray-300 text-md">Copyright © 2024 Bethany Home Management Information System | All Rights
+        <small class="text-md text-gray-300">Copyright © 2024 Bethany Home Management Information System | All Rights
             Reserved</small>
     </footer>
 </body>
 
 </html>
-

@@ -3,9 +3,7 @@
     "overrides": [
         {
             "files": ["*.blade.php"],
-            "options": {
-                "parser": "blade"
-            }
+            "options": { "parser": "blade", "sortTailwindcssClasses": true }
         }
     ]
 }

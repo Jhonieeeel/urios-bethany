@@ -2,13 +2,13 @@
 
     <!-- hero -->
 
-    <div class="py-9 w-full background-image-2 "
+    <div class="background-image-2 w-full py-9"
         style="background-image: url({{ asset('images/background-image-2.png') }});">
         <!-- content -->
-        <div class="w-full mx-auto py-6 overflow-x-auto">
-            <h2 class="text-2xl text-white text-center font-bold text-gray-100 mb-6">About Bethany Home</h2>
-            <div class="text-white space-y-6">
-                <p class="sm:max-w-5xl mx-auto font-light px-12 sm:px-3">Bethany Home (VAW-C) is a temporary shelter for
+        <div class="mx-auto w-full overflow-x-auto py-6">
+            <h2 class="mb-6 text-center text-2xl font-bold text-gray-100 text-white">About Bethany Home</h2>
+            <div class="space-y-6 text-white">
+                <p class="mx-auto px-12 font-light sm:max-w-5xl sm:px-3">Bethany Home (VAW-C) is a temporary shelter for
                     female
                     children
                     seeking
@@ -20,7 +20,7 @@
                     within the CARAGA region in Mindanao.
 
                 </p>
-                <p class=" max-w-5xl mx-auto font-light px-3">
+                <p class="mx-auto max-w-5xl px-3 font-light">
                     Bethany Home has been operating since late 1996. Initially focused on supporting urban poor
                     women
                     through livelihood projects, it shifted its mission to provide urgent shelter for female
@@ -29,7 +29,7 @@
                     place
                     where Jesus found refuge and friendship with Lazarus, Martha, and Mary.
                 </p>
-                <p class=" max-w-5xl mx-auto font-light px-3">
+                <p class="mx-auto max-w-5xl px-3 font-light">
                     In this program, Lazarus symbolizes the resurrection and new life that survivors can achieve
                     after
                     their traumatic experiences. Mary represents contemplation and prayer, guiding survivors
@@ -44,14 +44,14 @@
     </div>
 
     <!-- mission/vision -->
-    <div class="max-w-5xl flex sm:items-start sm:justify-around mx-auto space-x-9 p-9 sm:p-6">
+    <div class="mx-auto flex max-w-5xl space-x-9 p-9 sm:items-start sm:justify-around sm:p-6">
         <div class="mission px-16 sm:px-12">
-            <div class="flex justify-center mt-5 mb-7">
-                <span class="bg-green-700 text-white px-9 py-1 rounded-full mx-auto ">Mission</span>
+            <div class="mb-7 mt-5 flex justify-center">
+                <span class="mx-auto rounded-full bg-green-700 px-9 py-1 text-white">Mission</span>
             </div>
 
             <p>Moved by the charism of the Missionary Sisters of Mary (MSM), Bethany home is committed to:
-                <span class="block my-3">
+                <span class="my-3 block">
 
                     Protect and uphold the rights of female children and facilitate the recovery, healing and
                     reintegration of survivors of sexual abuse thru:
@@ -81,8 +81,8 @@
             </ol>
         </div>
         <div class="vision px-16 sm:px-6">
-            <div class="flex justify-center  mt-5 mb-7">
-                <span class="bg-green-700 text-white px-9 py-1 rounded-full mx-auto ">Vision</span>
+            <div class="mb-7 mt-5 flex justify-center">
+                <span class="mx-auto rounded-full bg-green-700 px-9 py-1 text-white">Vision</span>
             </div>
 
             <p class="text-center">A transformed society which uphold Christian values and respect of women and
@@ -92,9 +92,9 @@
     </div>
 
     <!-- gallery -->
-    <div class="w-full mx-auto mt-16 flex flex-col items-center">
-        <p class="text-center font-bold text-xl py-6">Gallery</p>
-        <div class="flex sm:justify-center flex-wrap gap-2 sm:max-w-3xl md:max-w-4xl lg:max-w-6xl">
+    <div class="mx-auto mt-16 flex w-full flex-col items-center">
+        <p class="py-6 text-center text-xl font-bold">Gallery</p>
+        <div class="flex flex-wrap gap-2 sm:max-w-3xl sm:justify-center md:max-w-4xl lg:max-w-6xl">
             <div>
                 <img src="{{ asset('images/gallery-1.png') }}" alt="">
             </div>

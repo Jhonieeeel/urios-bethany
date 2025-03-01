@@ -1,7 +1,7 @@
-<nav class="bg-green-700 flex items-center justify-between px-12 sticky top-0 w-full z-50">
+<nav class="sticky top-0 z-50 flex w-full items-center justify-between bg-green-700 px-12">
     <img src="{{ asset('images/bethany-logo.png') }}" class="w-44" alt="Bethany Logo">
 
-    <div class="flex items-center  text-gray-100 space-x-3">
+    <div class="flex items-center space-x-3 text-gray-100">
         <span>{{ Auth::user()->name }}</span>
         <a href="#">
 
@@ -16,4 +16,3 @@
     </div>
 
 </nav>
-

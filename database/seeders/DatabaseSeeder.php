@@ -14,28 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        /**
-         * Run the migrations.
-         * firstname
-         * middlename
-         * lastname
-         * dateOfBirth
-         * address
-         * civilStatus
-         * contactNumber
-         * officePosition
-         * dateAssumed
-        */
-        
         User::create([
             'name' => "Test",
             'email' => "test@example.com",
             "password" => "potanginamo"
         ]);
-         
-
         
     }
 }
