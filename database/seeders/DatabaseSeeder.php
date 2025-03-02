@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
- 
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,26 +16,9 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        /**
-         * Run the migrations.
-         * firstname
-         * middlename
-         * lastname
-         * dateOfBirth
-         * address
-         * civilStatus
-         * contactNumber
-         * officePosition
-         * dateAssumed
-        */
-        
-        User::create([
-            'name' => "Test",
-            'email' => "test@example.com",
-            "password" => "potanginamo"
+        User::factory()->create([
+            'name' => 'Test',
+            'email' => 'test@example.com',
         ]);
-         
-
-        
     }
 }

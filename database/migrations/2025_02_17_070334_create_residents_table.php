@@ -6,40 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Firstname
-     * Middlename
-     * Lastname
-     * Age
-     * Sex
-     * Address
-     * ContactNumber
-     * ----
-     * Incident Date
-     * Incident Time
-     * Admission Date
-     * Reporting Date
-     * Nature of the Crime
-     * Case Status
-     */
     public function up(): void
     {
         Schema::create('residents', function (Blueprint $table) {
             $table->id();
-            $table->string('firstname');
-            $table->string('middlename');
-            $table->string('lastname');
-            $table->string('age');
-            $table->string('sex');
+            $table->string('first_name');
+            $table->string('middle_name')->nullable();
+            $table->string('last_name');
+            $table->unsignedSmallInteger('age');
+            $table->enum('gender', ['Male', 'Female']);
             $table->string('address');
-            $table->string('contactNumber');
-            $table->string('incidentDate'); 
-            $table->string('incidentTime');
-            $table->string('admissionDate');
-            $table->string('reportDate');
-            $table->string('natureOfTheCrime');
-            $table->string('caseStatus');
-            $table->string('residentImage');
+            $table->string('contact_number')->nullable();
+            $table->enum('status', ['Admitted', 'Discharged']);
+            $table->date('admitted_at');
+            $table->date('dismissed_at')->nullable();
+            $table->string('clientele_category');
+            $table->string('profile');
             $table->timestamps();
         });
     }

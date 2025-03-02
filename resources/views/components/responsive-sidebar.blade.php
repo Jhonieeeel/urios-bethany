@@ -1,10 +1,10 @@
 <ul
-    class="group fixed z-50 min-h-screen w-[3.25rem] space-y-2 border-r border-gray-300 bg-white pt-2 shadow-lg transition-all hover:w-[250px] hover:rounded-r-xl">
+    class="group fixed z-50 min-h-screen w-[3.25rem] shrink-0 space-y-2 border-r border-gray-300 bg-white pt-2 shadow-lg transition-all hover:w-[250px] hover:rounded-r-xl">
 
     <!-- Home -->
     <li class="flex flex-col space-y-3 group-hover:justify-start overflow-hidden px-1 items-center">
         <a href="{{ route('home') }}"
-            class="{{ Route::is('home') ? 'bg-green-800 text-white' : 'hover:bg-gray-200' }} flex w-full items-center  overflow-x-hidden rounded-full transition-all">
+            class="{{ Route::is('home') ? 'bg-green-800 text-white' : 'hover:bg-gray-200' }} flex w-full items-center overflow-x-hidden rounded-full transition-all">
             <div class="bg-green-800 p-2 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -61,10 +61,10 @@
         </a>
     </li>
 
-    <!-- Resident -->
+    <!-- Residents -->
     <li class="flex flex-col space-y-3 group-hover:justify-start overflow-hidden px-1  items-center">
-        <a href="{{ route('residents') }}"
-            class="{{ Route::is('residents') ? 'bg-green-800 text-white' : 'hover:bg-gray-200' }} flex w-full items-center   overflow-x-hidden  rounded-full transition-all">
+        <a href="{{ route('residents.index') }}"
+            class="{{ Route::is('residents.*') ? 'bg-green-800 text-white' : 'hover:bg-gray-200' }} flex w-full items-center   overflow-x-hidden  rounded-full transition-all">
             <div class="bg-green-800 p-2 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

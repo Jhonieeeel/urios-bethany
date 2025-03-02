@@ -1,7 +1,6 @@
 <?php
 
 namespace Database\Factories;
-use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,28 +13,21 @@ class ResidentFactory extends Factory
      *
      * @return array<string, mixed>
      */
-  
 
     public function definition(): array
     {
         return [
-            'firstname' => $this->faker->firstName,         
-            'middlename' => $this->faker->lastName,         
-            'lastname' => $this->faker->lastName,             
-            'age' => $this->faker->numberBetween(19, 80),    
-            'sex' => $this->faker->randomElement(['male', 'female']),  
-            'address' => $this->faker->address,               
-            'contactNumber' => $this->faker->phoneNumber,     
-            'incidentDate' => $this->faker->date,            
-            'incidentTime' => $this->faker->time,            
-            'admissionDate' => $this->faker->date,           
-            'reportDate' => $this->faker->date,              
-            'natureOfTheCrime' => $this->faker->word,        
-            'caseStatus' => $this->faker->randomElement(['open', 'closed', 'pending']),  
-            'residentImage' => 'images/chancellor.png',     
+            'first_name' => fake()->firstName(),
+            'middle_name' => fake()->lastName(),
+            'last_name' => fake()->lastName(),
+            'age' => fake()->numberBetween(5, 18),
+            'gender' => fake()->randomElement(['Male', 'Female']),
+            'address' => fake()->address(),
+            'contact_number' => fake()->phoneNumber(),
+            'admitted_at' => fake()->date(),
+            'clientele_category' => fake()->word(),
+            'status' => fake()->randomElement(['Admitted', 'Discharged']),
+            'profile' => 'images/chancellor.png',
         ];
     }
-
-
-
 }

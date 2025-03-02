@@ -16,7 +16,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans text-gray-900 antialias bg-[url('../images/background-image-1.png')]">
+<body class="antialias light bg-[url('../images/background-image-1.png')] font-sans text-gray-900">
     <div class="flex min-h-screen flex-col items-center pt-0 sm:justify-center sm:pt-6">
         <div>
             <!-- logo -->
