@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
-            $table->unsignedSmallInteger('age');
+            $table->date('birth_date');
             $table->enum('gender', ['Male', 'Female']);
             $table->string('address');
             $table->string('contact_number')->nullable();

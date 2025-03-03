@@ -26,6 +26,7 @@ class Resident extends Model
     public function casts(): array
     {
         return [
+            'birth_date' => 'date',
             'admitted_at' => 'date',
             'dismissed_at' => 'date',
         ];
