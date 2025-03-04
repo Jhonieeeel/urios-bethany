@@ -20,13 +20,13 @@ class ResidentFactory extends Factory
             'first_name' => fake()->firstName(),
             'middle_name' => fake()->lastName(),
             'last_name' => fake()->lastName(),
-            'age' => fake()->numberBetween(5, 18),
+            'birth_date' => fake()->date(),
             'gender' => fake()->randomElement(['Male', 'Female']),
             'address' => fake()->address(),
             'contact_number' => fake()->phoneNumber(),
             'admitted_at' => fake()->date(),
             'clientele_category' => fake()->word(),
-            'status' => fake()->randomElement(['Admitted', 'Discharged']),
+            'status' => 'Admitted',
             'profile' => 'images/chancellor.png',
         ];
     }

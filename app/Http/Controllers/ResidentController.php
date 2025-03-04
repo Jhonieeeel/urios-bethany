@@ -6,7 +6,6 @@ use App\Http\Requests\Resident\StoreResidentRequest;
 use App\Http\Requests\Resident\UpdateResidentRequest;
 use App\Models\Resident;
 use Illuminate\Support\Facades\Storage;
-use Spatie\QueryBuilder\QueryBuilder;
 
 class ResidentController extends Controller
 {
@@ -15,9 +14,7 @@ class ResidentController extends Controller
      */
     public function index()
     {
-        $residents = QueryBuilder::for(Resident::class)
-            ->allowedFilters(['name'])
-            ->paginate(5);
+        $residents = Resident::search(request('query'))->paginate();
 
         return view('residents.index', ['residents' => $residents]);
     }
@@ -37,7 +34,7 @@ class ResidentController extends Controller
     {
         Resident::create(array_merge(
             $request->except(['profile']),
-            ['profile' => asset('storage/'.$request->file('profile')->store('profiles', 'public'))],
+            ['profile' => $request->file('profile')->store('profiles', 'public')],
         ));
 
         return redirect(route('residents.index'));
@@ -71,7 +68,7 @@ class ResidentController extends Controller
         if ($request->has('profile')) {
             $resident->update(array_merge(
                 $request->except(['profile']),
-                ['profile' => asset('storage/'.$request->file('profile')->store('profiles', 'public'))],
+                ['profile' => $request->file('profile')->store('profiles', 'public')],
             ));
         } else {
             $resident->update($request->except('profile'));
