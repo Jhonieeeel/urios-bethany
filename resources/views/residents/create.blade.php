@@ -194,7 +194,7 @@
 
             <div class="mt-4 flex items-center justify-end">
                 <a href="{{ route('residents.index') }}"
-                    class="inline-flex items-center rounded-full border border-gray-300 bg-gray-200 px-4 py-2 text-sm font-medium text-gray-800 transition duration-150 ease-in-out hover:bg-gray-300">
+                    class="inline-flex items-center rounded-full border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-800 transition duration-150 ease-in-out hover:bg-gray-200">
                     Cancel
                 </a>
 
