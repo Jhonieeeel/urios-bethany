@@ -10,32 +10,34 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=poppins:400,500,600,700" rel="stylesheet" />
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="antialiase font-sans text-gray-900"
-    style="background-image: url('{{ asset('images/background-image-1.png') }}')">
-    <div class="flex min-h-screen flex-col items-center sm:justify-center sm:pt-0">
+<body class="antialias light bg-[url('../images/background-image-1.png')] font-sans text-gray-900">
+    <div class="flex min-h-screen flex-col items-center pt-0 sm:justify-center sm:pt-6">
         <div>
             <!-- logo -->
             <div class="flex flex-col sm:justify-center">
-                <img src="{{ asset('images/bethany-logo.png') }}" alt="Bethany Logo">
+                <img src="{{ asset('images/bethany-logo.png') }}" alt="Bethany Logo" class="h-24 w-auto">
             </div>
         </div>
 
         <!-- form -->
-        <div class="w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-3xl">
+        <div class="mt-8 w-full overflow-hidden bg-white px-6 pb-6 pt-4 shadow-md sm:max-w-md sm:rounded-3xl">
             {{ $slot }}
         </div>
+
+        <footer class="flex justify-center pt-6 pb-3">
+            <p class="text-center text-sm font-medium text-gray-300">
+                Copyright © 2024 Bethany Home Management Information System <br>
+                All Rights Reserved
+            </p>
+        </footer>
     </div>
 
-    <footer class="flex justify-center p-3">
-        <small class="text-md text-gray-300">Copyright © 2024 Bethany Home Management Information System | All Rights
-            Reserved</small>
-    </footer>
 </body>
 
 </html>
