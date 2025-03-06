@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('gender', ['Male', 'Female']);
             $table->string('address');
             $table->string('contact_number')->nullable();
-            $table->enum('status', array_column(ResidentStatus::cases(), 'values'));
+            $table->enum('status', ResidentStatus::values());
             $table->date('admitted_at');
             $table->date('dismissed_at')->nullable();
             $table->string('clientele_category');

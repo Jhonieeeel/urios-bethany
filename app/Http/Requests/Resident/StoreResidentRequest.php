@@ -33,7 +33,7 @@ class StoreResidentRequest extends FormRequest
             'contact_number',
             'admitted_at' => 'required|date',
             'dismissed_at' => 'nullable|date',
-            'status' => ['required', Rule::in(array_column(ResidentStatus::cases(), 'values'))],
+            'status' => ['required', 'string', Rule::in(ResidentStatus::values())],
             'profile' => 'required|file|mimetypes:image/*',
         ];
     }

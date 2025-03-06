@@ -12,7 +12,7 @@
                             <form hx-boost="" class="relative basis-1/4">
                                 <label for="query" class="sr-only">Search</label>
                                 <input type="search" name="query" id="query"
-                                    class="block w-full rounded-full border-gray-200 bg-white px-3 py-2 ps-9 text-sm shadow-sm focus:z-10 focus:border-green-500 focus:ring-green-500 disabled:pointer-events-none disabled:opacity-50"
+                                    class="block w-full rounded-full border-gray-200 bg-white px-3 py-2 ps-9 text-sm shadow focus:z-10 focus:border-green-500 focus:ring-green-500 disabled:pointer-events-none disabled:opacity-50"
                                     placeholder="Search for items" value="{{ request('query') }}" />
                                 <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
                                     <svg class="size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24"
