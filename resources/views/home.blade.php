@@ -1,14 +1,10 @@
 <x-app-layout>
-
-    <!-- hero -->
-
-    <div class="background-image-2 w-full py-9"
+    <div class="py-9 w-full background-image-2 "
         style="background-image: url({{ asset('images/background-image-2.png') }});">
-        <!-- content -->
-        <div class="mx-auto w-full overflow-x-auto py-6">
-            <h2 class="mb-6 text-center text-2xl font-bold text-gray-100 text-white">About Bethany Home</h2>
-            <div class="space-y-6 text-white">
-                <p class="mx-auto px-12 font-light sm:max-w-5xl sm:px-3">Bethany Home (VAW-C) is a temporary shelter for
+        <div class="w-full mx-auto py-6 overflow-x-auto">
+            <h2 class="text-2xl text-center font-bold text-gray-100 mb-6">About Bethany Home</h2>
+            <div class="text-white space-y-6">
+                <p class="sm:max-w-5xl mx-auto font-light px-12 sm:px-3">Bethany Home (VAW-C) is a temporary shelter for
                     female
                     children
                     seeking
@@ -43,11 +39,10 @@
         </div>
     </div>
 
-    <!-- mission/vision -->
-    <div class="mx-auto flex max-w-5xl space-x-9 p-9 sm:items-start sm:justify-around sm:p-6">
-        <div class="mission px-16 sm:px-12">
-            <div class="mb-7 mt-5 flex justify-center">
-                <span class="mx-auto rounded-full bg-green-700 px-9 py-1 text-white">Mission</span>
+    <div class="max-w-5xl flex sm:items-start mx-auto p-9 sm:p-6">
+        <div class="px-16 sm:px-12">
+            <div class="flex justify-center mt-5 mb-7">
+                <span class="bg-green-700 text-white px-9 py-1 rounded-full mx-auto ">Mission</span>
             </div>
 
             <p>Moved by the charism of the Missionary Sisters of Mary (MSM), Bethany home is committed to:
@@ -58,7 +53,7 @@
                 </span>
 
             </p>
-            <ol class="list-decimal">
+            <ol class="list-decimal list-inside">
                 <li>
                     Direct services to survivors
                 </li>
@@ -80,21 +75,50 @@
                 </li>
             </ol>
         </div>
-        <div class="vision px-16 sm:px-6">
-            <div class="mb-7 mt-5 flex justify-center">
-                <span class="mx-auto rounded-full bg-green-700 px-9 py-1 text-white">Vision</span>
+
+        <div class="px-16 sm:px-6">
+            <div class="flex justify-center mt-5 mb-7">
+                <span class="bg-green-700 text-white px-9 py-1 rounded-full mx-auto ">Vision</span>
             </div>
 
-            <p class="text-center">A transformed society which uphold Christian values and respect of women and
-                children’s human
+            <p>A transformed society which uphold Christian values and respect of women and
+                children's human
                 rights & dignity.</p>
+
+            <div class="flex justify-center mt-8 mb-6">
+                <span class="bg-green-700 text-white px-9 py-1 rounded-full mx-auto">
+                    Our Values
+                </span>
+            </div>
+
+            <dl>
+                <dt class="font-semibold">Integrity:</dt>
+                <dd>We shall strive to live a life of integrity consistent and mission of Bethany Home</dd>
+
+                <dt class="font-semibold mt-2">Fairness:</dt>
+                <dd>We shall be fair in relating with the survivors and to all the people we deal with.</dd>
+
+                <dt class="font-semibold mt-2">Perseverance:</dt>
+                <dd>We will work with perseverance even amid challenges and difficulties in the serivce of the community.</dd>
+
+                <dt class="font-semibold mt-2">Harmony:</dt>
+                <dd>We will aspire for a life that is harmonious with other people and creation.</dd>
+
+                <dt class="font-semibold mt-2">Compassion:</dt>
+                <dd>We shall help and treat women and children with compassion.</dd>
+
+                <dt class="font-semibold mt-2">Commitment:</dt>
+                <dd>We are commited to pursue our mission mindful for the common good.</dd>
+
+                <dt class="font-semibold mt-2">Respect:</dt>
+                <dd>We shall respect the individuality and dignity of every person at all times.</dd>
+            </dl>
         </div>
     </div>
 
-    <!-- gallery -->
-    <div class="mx-auto mt-16 flex w-full flex-col items-center">
-        <p class="py-6 text-center text-xl font-bold">Gallery</p>
-        <div class="flex flex-wrap gap-2 sm:max-w-3xl sm:justify-center md:max-w-4xl lg:max-w-6xl">
+    <div class="w-full mx-auto mt-16 flex flex-col items-center">
+        <p class="text-center font-bold text-xl py-6">Gallery</p>
+        <div class="flex sm:justify-center flex-wrap gap-2 sm:max-w-3xl md:max-w-4xl lg:max-w-6xl">
             <div>
                 <img src="{{ asset('images/gallery-1.png') }}" alt="">
             </div>
@@ -115,11 +139,10 @@
 
     </div>
 
-    <!-- footer -->
     <div class="py-9">
-        <p class="text-center text-gray-500">Copyright © 2024 Bethany Home Management Information System | All
-            Rights
-            Reserved</p>
+        <p class="text-center text-sm font-medium text-gray-500">
+            Copyright © 2024 Bethany Home Management Information System | All Rights Reserved
+        </p>
     </div>
 
 </x-app-layout>

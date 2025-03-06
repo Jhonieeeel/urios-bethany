@@ -2,49 +2,46 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Notifications\Notifiable;
-
-
-// spatie
-use Spatie\Activitylog\Traits\LogsActivity;
+use Laravel\Scout\Searchable;
 use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Resident extends Model
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, LogsActivity;
+    use HasFactory, Notifiable, LogsActivity, Searchable;
 
+    protected $guarded = [];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-    protected $fillable = [
-        'firstname',
-        'middlename',
-        'lastname',
-        'age',
-        'sex',
-        'address',
-        'contactNumber',
-        'incidentDate',
-        'incidentTime',
-        'admissionDate',
-        'reportDate',
-        'natureOfTheCrime',
-        'caseStatus',
-        'residentImage'
-    ];
+    public function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->first_name.' '.$this->last_name,
+        );
+    }
 
-    // log Funcwe
+    public function casts(): array
+    {
+        return [
+            'birth_date' => 'date',
+            'admitted_at' => 'date',
+            'dismissed_at' => 'date',
+        ];
+    }
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->setDescriptionForEvent(fn(string $eventName) => "Admin {$eventName} resident information");
+            ->setDescriptionForEvent(fn(string $eventName) => "Admin {$eventName} resident");
     }
 
+    public function document(): MorphMany
+    {
+        return $this->morphMany(Document::class, 'documentable');
+    }
 }

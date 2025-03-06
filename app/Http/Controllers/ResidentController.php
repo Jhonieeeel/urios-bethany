@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App\Http\Requests\Resident\StoreResidentRequest;
+use App\Http\Requests\Resident\UpdateResidentRequest;
 use App\Models\Resident;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class ResidentController extends Controller
 {
@@ -14,11 +14,9 @@ class ResidentController extends Controller
      */
     public function index()
     {
-        // show all residents
+        $residents = Resident::search(request('query'))->paginate();
 
-        $residents = Resident::paginate(5);
-
-        return view('residents', ['residents' => $residents]); 
+        return view('residents.index', ['residents' => $residents]);
     }
 
     /**
@@ -26,47 +24,20 @@ class ResidentController extends Controller
      */
     public function create()
     {
-        //
-
-        return view('add-resident');
+        return view('residents.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreResidentRequest $request)
     {
+        Resident::create(array_merge(
+            $request->except(['profile']),
+            ['profile' => $request->file('profile')->store('profiles', 'public')],
+        ));
 
-        $request->validate([
-            'firstname' => ['required', 'min:2'],
-            'middlename' => ['required', 'min:2'],
-            'lastname' => ['required', 'min:2'],
-            'age' => ['required', 'numeric', 'gt:18'],
-            'sex' => ['required'],
-            'address' => ['required'],
-            'contactNumber' => ['required', 'min:11'],
-            'incidentDate' => ['required', 'min:6'],
-            'incidentTime' => ['required'],
-            'admissionDate' => 'required', ['min:6'],
-            'reportDate' => ['required'],
-            'natureOfTheCrime' => ['required'],
-            'caseStatus' => ['required'],
-            'residentImage' => ['required', 'mimetypes:image/*'],
-
-        ]);
-
-         
-
-        $resident = array_merge(
-            $request->except('residentImage'), 
-            ['residentImage' => asset('storage/'.$request->file('residentImage')->store('', 'public'))],
-        );
-
-        Resident::create($resident);
-
-
-        return redirect()->route('residents');
-     
+        return redirect(route('residents.index'));
     }
 
     /**
@@ -74,74 +45,47 @@ class ResidentController extends Controller
      */
     public function show(Resident $resident)
     {
-
-        // dd($resident);      
-
-       return view('resident-information', compact('resident'));
-        
-
+        return view('residents.show', [
+            'resident' => $resident,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Resident $resident)
     {
-        $resident = Resident::findOrFail($id);
-
-        return view('update-resident', compact('resident'));
+        return view('residents.edit', [
+            'resident' => $resident,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateResidentRequest $request, Resident $resident)
     {
-        $request->validate([
-            'firstname' => ['required', 'min:2'],
-            'middlename' => ['required', 'min:2'],
-            'lastname' => ['required', 'min:2'],
-            'age' => ['required', 'numeric', 'gt:18'],
-            'sex' => ['required', Rule::in(['male', 'female'])],
-            'address' => ['required'],
-            'contactNumber' => ['required', 'min:11'],
-            'incidentDate' => ['required', 'min:6'],
-            'incidentTime' => ['required'],
-            'admissionDate' => 'required', ['min:6'],
-            'reportDate' => ['required'],
-            'natureOfTheCrime' => ['required'],
-            'caseStatus' => ['required'],
-            'residentImage' => ['nullable', 'mimetypes:image/*'],
-        ]);
-
-        $residentData = Resident::findOrFail($id);
-
-        if ($request->has('residentImage')) {
-            $resident = array_merge(
-                $request->except('residentImage'), 
-                ['residentImage' => asset('storage/'.$request->file('residentImage')->store('', 'public'))],
-            );
-        }else {
-            $resident = $request->except('residentImage');
+        if ($request->has('profile')) {
+            $resident->update(array_merge(
+                $request->except(['profile']),
+                ['profile' => $request->file('profile')->store('profiles', 'public')],
+            ));
+        } else {
+            $resident->update($request->except('profile'));
         }
 
-        
-
-         $residentData->update($resident);
-
-
-        return redirect()->route('residents');
+        return redirect(route('residents.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Resident $resident)
     {
-        $resident = Resident::findOrFail($id);
+        Storage::public()->delete($resident->profile);
 
         $resident->delete();
 
-        return redirect()->route('residents');
+        return redirect(route('residents.index'));
     }
 }
