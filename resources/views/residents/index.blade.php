@@ -62,12 +62,16 @@
                                 </thead>
                                 <tbody class="divide-y divide-gray-200">
                                     @forelse ($residents as $resident)
-                                        <tr>
+                                        <tr class="transition duration-150 ease-in-out hover:bg-gray-100">
                                             <td
                                                 class="whitespace-nowrap px-6 py-4 text-end text-sm font-medium text-gray-800">
                                                 {{ str_pad($resident->id, 3, '0', STR_PAD_LEFT) }}</td>
                                             <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800">
-                                                {{ $resident->name }}</td>
+                                                <a href="{{ route('residents.show', $resident) }}"
+                                                    class="transition duration-150 ease-in-out hover:underline hover:underline-offset-4">
+                                                    {{ $resident->name }}
+                                                </a>
+                                            </td>
                                             <td
                                                 class="{{ $resident->status === 'Admitted' ? 'text-green-600' : 'text-red-600' }} whitespace-nowrap px-6 py-4 text-sm">
                                                 {{ $resident->status }}

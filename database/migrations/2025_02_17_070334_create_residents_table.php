@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ResidentStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,7 @@ return new class extends Migration
             $table->enum('gender', ['Male', 'Female']);
             $table->string('address');
             $table->string('contact_number')->nullable();
-            $table->enum('status', ['Admitted', 'Discharged']);
+            $table->enum('status', array_column(ResidentStatus::cases(), 'values'));
             $table->date('admitted_at');
             $table->date('dismissed_at')->nullable();
             $table->string('clientele_category');

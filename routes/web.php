@@ -6,6 +6,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResidentController;
+use App\Http\Controllers\ResidentDocumentController;
 use App\Models\Officer;
 use App\Models\Resident;
 use Illuminate\Support\Facades\Route;
@@ -62,10 +63,15 @@ Route::middleware(['auth'])->controller(ResidentController::class)->group(functi
     Route::get('/residents', 'index')->name('residents.index');
     Route::get('/residents/create', 'create')->name('residents.create');
     Route::post('/residents', 'store')->name('residents.store');
-    Route::get('/residents/{resident}')->name('residents.show');
+    Route::get('/residents/{resident}', 'show')->name('residents.show');
     Route::get('/residents/{resident}/edit', 'edit')->name('residents.edit');
     Route::put('/residents/{resident}', 'update')->name('residents.update');
     Route::delete('/residents/{resident}', 'destroy')->name('residents.destroy');
+});
+
+Route::middleware(['auth'])->controller(ResidentDocumentController::class)->group(function () {
+    Route::post('/residents/{resident}/documents', 'store')->name('residents.documents.store');
+    Route::delete('/residents/{resident}/documents/{document}', 'destroy')->name('resident.documents.destroy');
 });
 
 Route::put('/resident/{resident}', [ResidentController::class, 'update'])->middleware(['auth', 'verified'])->name('updateResident');
