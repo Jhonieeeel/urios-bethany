@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ResidentStatus;
 use App\Http\Requests\Resident\StoreResidentRequest;
 use App\Http\Requests\Resident\UpdateResidentRequest;
 use App\Models\Resident;
@@ -24,7 +25,9 @@ class ResidentController extends Controller
      */
     public function create()
     {
-        return view('residents.create');
+        return view('residents.create', [
+            'residentStatus' => ResidentStatus::values(),
+        ]);
     }
 
     /**

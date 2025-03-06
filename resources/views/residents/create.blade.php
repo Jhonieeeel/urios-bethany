@@ -11,7 +11,7 @@
             <h3 class="text-center text-xl font-semibold text-green-600">Resident Information</h3>
 
             <div x-data="{
-                changePreviewImage(evt) {
+                changeImagePreview(evt) {
                     const [file] = evt.target.files;
                     if (file) {
                         document.getElementById('profile-preview').src = URL.createObjectURL(file);
@@ -21,7 +21,7 @@
                 <label for="profile" class="block text-sm text-green-600">Upload Image</label>
                 <img id="profile-preview" src="{{ asset('storage/profiles/default-profile.png') }}" alt=""
                     class="mt-1 h-[193px] w-[196px] rounded-md object-cover shadow-sm" />
-                <input x-on:change="changePreviewImage" type="file" name="profile" id="profile" class="hidden"
+                <input x-on:change="changeImagePreview" type="file" name="profile" id="profile" class="hidden"
                     accept="image/*" required />
                 <button x-on:click="document.getElementById('profile').click()" type="button"
                     class="mt-2 inline-flex w-full max-w-[193px] items-center justify-center rounded-full bg-green-600 px-4 py-2 font-medium text-white transition duration-150 ease-out hover:bg-green-600/90">
@@ -182,14 +182,7 @@
                     <select x-on:change="onStatusChange" id="status" name="status"
                         class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600">
                         <option value="">Select Status</option>
-                        @foreach ([
-                            'No case filed',
-                            'Terminated',
-                            'On-going',
-                            'At large',
-                            'Withdrawn',
-                            'Dismissed',
-                        ] as $status)
+                        @foreach ($residentStatus as $status)
                             <option value="{{ $status }}" @selected(old('status') === $status)>
                                 {{ $status }}
                             </option>
