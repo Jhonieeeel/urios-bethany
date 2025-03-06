@@ -40,7 +40,7 @@ class Resident extends Model
             ->setDescriptionForEvent(fn(string $eventName) => "Admin {$eventName} resident");
     }
 
-    public function document(): MorphMany
+    public function documents(): MorphMany
     {
         return $this->morphMany(Document::class, 'documentable');
     }
