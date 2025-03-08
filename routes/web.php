@@ -7,6 +7,7 @@ use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\ResidentDocumentController;
+use App\Http\Controllers\UserController;
 use App\Models\Officer;
 use App\Models\Resident;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,14 @@ Route::middleware(['auth'])->controller(OfficerController::class)->group(functio
     Route::get('/officers/{id}/edit', 'edit')->name('edit-officer');
     Route::put('/officers/{id}', 'update')->name('update-officer');
     Route::delete('/officers/{id}', 'destroy')->name('delete-officer');
+});
+
+Route::middleware(['auth'])->controller(UserController::class)->group(function() {
+    Route::get('/users', 'index')->name('user.index');
+    Route::get('/users/add', 'create')->name('user.create');
+    Route::post('/users/store', 'store')->name('user.store');
+    Route::delete("/user/{id}/destroy", 'destroy')->name("user.destroy");
+    Route::put("user/{id}/update", 'update')->name('user.update');
 });
 
 Route::get('/documents', [DocumentController::class, 'index'])->middleware(['auth', 'verified'])->name('documents');

@@ -1,14 +1,15 @@
 <x-app-layout>
     <div class="sm:px-16 sm:py-6">
+        {{ $errors }}
         <!-- Add officer -->
-        <form action="{{ route('add-officer') }}" method="post" class="m-6 max-w-4xl border p-6 shadow-xl"
+        <form action="{{ route('add-officer') }}" method="post" class="m-6 w-full border bg-white p-6 shadow-xl"
             enctype="multipart/form-data">
             @csrf
             <p class="text-1xl pb-6 text-center font-bold text-green-600">Officer Information</p>
             <!-- form -->
             <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
                 <div class="p-2">
-                    <label for="firstname" class="text-green-600">First Name</label>
+                    <label for="firstname" class="text-green-600">First Name<span class="text-red-500">*</span></label>
                     <x-text-input id="firstname" placeholder="" class="mt-1 block w-full pl-9 placeholder:text-sm"
                         type="text" name="firstname" required autocomplete="" />
                 </div>
@@ -18,34 +19,41 @@
                         type="text" name="middlename" required autocomplete="" />
                 </div>
                 <div class="p-2">
-                    <label for="lastname" class="text-green-600">Last Name</label>
+                    <label for="lastname" class="text-green-600">Last Name<span class="text-red-500">*</span></label>
                     <x-text-input id="lastname" placeholder="" class="mt-1 block w-full pl-9 placeholder:text-sm"
                         type="text" name="lastname" required autocomplete="" />
                 </div>
 
                 <div class="p-2">
-                    <label for="dateOfBirth" class="text-green-600">Date of Birth</label>
+                    <label for="dateOfBirth" class="text-green-600">Date of Birth<span
+                            class="text-red-500">*</span></label>
                     <input type="date" id="dateOfBirth" name="dateOfBirth"
                         class="mt-1 w-full rounded-full border border-gray-300 px-4 py-2.5">
 
                 </div>
                 <div class="p-2">
-                    <label for="address" class="text-green-600">Address</label>
+                    <label for="address" class="text-green-600">Address<span class="text-red-500">*</span></label>
                     <x-text-input id="address" placeholder="" class="mt-1 block w-full pl-9 placeholder:text-sm"
                         type="text" name="address" required autocomplete="" />
                 </div>
                 <div class="p-2">
-                    <label for="civilStatus" class="text-green-600">Civil Status</label>
-                    <x-text-input id="civilStatus" placeholder="" class="mt-1 block w-full pl-9 placeholder:text-sm"
-                        type="text" name="civilStatus" required autocomplete="" />
+                    <label for="civilStatus" class="text-green-600">Civil Status<span
+                            class="text-red-500">*</span></label>
+                    <select name="civilStatus" id="civilStatus"
+                        class="mt-1 block w-full rounded-full border border-gray-300 pl-9 placeholder:text-sm">
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                    </select>
                 </div>
                 <div class="p-2">
-                    <label for="contactNumber" class="text-green-600">Contact Number</label>
+                    <label for="contactNumber" class="text-green-600">Contact Number<span
+                            class="text-red-500">*</span></label>
                     <x-text-input id="contactNumber" placeholder="" class="mt-1 block w-full pl-9 placeholder:text-sm"
                         type="text" name="contactNumber" required autocomplete="" />
                 </div>
                 <div class="p-2">
-                    <label for="dateAssumed" class="text-green-600">Date Assumed in Office</label>
+                    <label for="dateAssumed" class="text-green-600">Date Assumed in Office<span
+                            class="text-red-500">*</span></label>
                     <input type="date" id="dateAssumed" name="dateAssumed"
                         class="mt-1 w-full rounded-full border border-gray-300 px-4 py-2.5">
                 </div>
@@ -54,10 +62,10 @@
                         name="officePosition" value="{{ request('position') }}" autocomplete="" />
                 </div>
             </div>
-            <div class="flex flex-wrap items-end justify-around py-2">
+            <div class="flex flex-wrap items-center gap-6 p-2">
                 <!-- img -->
                 <div class="flex flex-col items-center justify-center pt-6">
-                    <small class="text-green-600">Upload Image</small>
+                    <small class="text-green-600">Upload Image<span class="text-red-500">*</span></small>
                     <img id="imageHolder" src="{{ asset('images/upload-image.png') }}"
                         class="h-[150px] w-[150px] shadow-lg" alt="">
                     <label

@@ -80,6 +80,7 @@
                                     </div>
                                 </form>
 
+                                <!-- modal -->
                                 <div x-data="{ open: false }" class="ms-auto">
                                     <button x-on:click="open = true" type="button"
                                         class="inline-flex items-center rounded-full bg-green-700 px-4 py-2 text-sm font-medium text-white transition duration-150 ease-in-out hover:bg-green-700/90 focus-visible:outline-none">
@@ -124,7 +125,8 @@
                                                     <form class="max-w-sm">
                                                         <label for="file-input" class="sr-only">Choose file</label>
                                                         <input type="file" name="file-input" id="file-input"
-                                                            class="block w-full rounded-md border border-gray-300 text-sm shadow-sm file:me-4 file:border-0 file:bg-gray-50 file:px-4 file:py-3 focus:z-10 focus:border-green-500 focus:ring-green-500 disabled:pointer-events-none disabled:opacity-50" required accept="application/pdf" />
+                                                            class="block w-full rounded-md border border-gray-300 text-sm shadow-sm file:me-4 file:border-0 file:bg-gray-50 file:px-4 file:py-3 focus:z-10 focus:border-green-500 focus:ring-green-500 disabled:pointer-events-none disabled:opacity-50"
+                                                            required accept="application/pdf" />
                                                     </form>
                                                 </form>
                                             </div>

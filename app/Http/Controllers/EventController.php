@@ -93,13 +93,15 @@ class EventController extends Controller
             'daterange' => ['required'],
            ]);
 
+        
+
         $eventDates = explode(' - ', $events['daterange']);
 
         $startDate = Carbon::parse($eventDates[0])->toDateTimeString();  
         $endDate = Carbon::parse($eventDates[1])->toDateTimeString();
         
         $eventData = Event::findOrFail($id);
-
+        
         $eventData->update([
             'title' => $events['eventName'],
             'start' => $startDate,

@@ -84,12 +84,9 @@
                 </div>
             </div>
             <div class="flex justify-center gap-3 py-3 text-white sm:items-center sm:justify-end">
-                <form action="{{ route('delete-officer', $officer->id) }}">
-                    @csrf
-                    @method('delete')
-                    <button type="submit" class="rounded-full bg-red-700 px-4 py-1">Delete</button>
 
-                </form>
+                <a href="{{ route('officers') }} " class="rounded-full bg-red-700 px-4 py-1">Back</a>
+
                 <button type="submit" class="rounded-full bg-green-700 px-4 py-1">Submit</button>
             </div>
         </form>
