@@ -63,10 +63,9 @@
                 </div>
             </div>
             <div class="flex flex-wrap items-center gap-6 p-2">
-                <!-- img -->
                 <div class="flex flex-col items-center justify-center pt-6">
                     <small class="text-green-600">Upload Image<span class="text-red-500">*</span></small>
-                    <img id="imageHolder" src="{{ asset('images/upload-image.png') }}"
+                    <img id="imageHolder" src="{{ asset('storage/profiles/default-profile.png') }}"
                         class="h-[150px] w-[150px] shadow-lg" alt="">
                     <label
                         class="my-2 flex cursor-pointer items-center space-x-2 rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-green-700">

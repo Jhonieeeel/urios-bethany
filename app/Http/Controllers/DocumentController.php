@@ -14,7 +14,7 @@ class DocumentController extends Controller
      */
     public function index(Request $request)
     {
-        $documents = Document::search($request->query)
+        $documents = Document::search(request('query'))
             ->where('documentable_id', NULL)
             ->paginate();
 

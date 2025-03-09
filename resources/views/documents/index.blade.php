@@ -70,7 +70,7 @@
                                                 <div>
                                                     <label for="filename" class="block text-sm font-medium text-gray-800">File Name</label>
                                                     <input type="text" id="filename" name="filename"
-                                                        class="mt-1 block w-full rounded-md border border-gray-300 text-sm shadow-sm focus:border-green-500 focus:ring-green-500"
+                                                        class="mt-1 block w-full max-w-sm rounded-md border border-gray-300 text-sm shadow-sm focus:border-green-500 focus:ring-green-500"
                                                         required />
                                                     <x-input-error :messages="$errors->get('filename')" class="mt-2" />
                                                 </div>
@@ -78,7 +78,7 @@
                                                 <div class="mt-4">
                                                     <label for="document" class="sr-only">Choose file</label>
                                                     <input type="file" name="document" id="document"
-                                                        class="block w-full rounded-md border border-gray-300 text-sm shadow-sm file:me-4 file:border-0 file:bg-gray-50 file:px-4 file:py-3 focus:z-10 focus:border-green-500 focus:ring-green-500 disabled:pointer-events-none disabled:opacity-50"
+                                                        class="block w-full max-w-sm rounded-md border border-gray-300 text-sm shadow-sm file:me-4 file:border-0 file:bg-gray-50 file:px-4 file:py-3 focus:z-10 focus:border-green-500 focus:ring-green-500 disabled:pointer-events-none disabled:opacity-50"
                                                         required accept="application/pdf" />
                                                     <x-input-error :messages="$errors->get('document')" class="mt-2" />
                                                 </div>
@@ -121,12 +121,12 @@
                                             </td>
                                             <td class="whitespace-nowrap px-6 py-4 text-end text-sm font-medium">
                                                 <button type="button"
-                                                    class="ms-1 inline-flex items-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-red-600 hover:text-red-800 focus:text-red-800 focus:outline-none disabled:pointer-events-none disabled:opacity-50">
+                                                    class="inline-flex items-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-red-600 hover:text-red-800 focus:text-red-800 focus:outline-none disabled:pointer-events-none disabled:opacity-50">
                                                     Delete
                                                 </button>
 
                                                 <a href="{{ asset('storage/' . $document->path) }}" target="_blank"
-                                                    class="inline-flex items-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-green-600 hover:text-green-800 focus:text-green-800 focus:outline-none disabled:pointer-events-none disabled:opacity-50">
+                                                    class="ms-1 inline-flex items-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-green-600 hover:text-green-800 focus:text-green-800 focus:outline-none disabled:pointer-events-none disabled:opacity-50">
                                                     Print
                                                 </a>
                                             </td>
