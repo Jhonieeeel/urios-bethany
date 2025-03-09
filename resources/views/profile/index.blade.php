@@ -69,46 +69,52 @@
                                         <div class="p-4">
                                             <div class="mx-auto max-w-lg space-y-3">
                                                 @csrf
-                                                <div class="flex flex-col flex-wrap gap-2 sm:justify-between">
-                                                    <label for="name" class="block text-sm text-green-600">
-                                                        Name<span class="text-red-600">*</span>
-                                                    </label>
-                                                    <input type="text" id="name" name="name"
-                                                        class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
-                                                        required autocomplete="off" />
-                                                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                                <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                                                    <div class="p-2">
+                                                        <label for="name" class="block text-sm text-green-600">
+                                                            Name<span class="text-red-600">*</span>
+                                                        </label>
+                                                        <input type="text" id="name" name="name"
+                                                            class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
+                                                            required autocomplete="off" />
+                                                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
 
-                                                    <label for="name" class="block text-sm text-green-600">
-                                                        Email Address<span class="text-red-600">*</span>
-                                                    </label>
-                                                    <input type="email" id="email" name="email"
-                                                        class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
-                                                        required autocomplete="off" />
-                                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                                                </div>
-                                                <div class="flex flex-wrap gap-2">
-                                                    <label for="password" class="block text-sm text-green-600">
-                                                        Password<span class="text-red-600">*</span>
-                                                    </label>
-                                                    <input type="password" id="email" name="password"
-                                                        class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
-                                                        required autocomplete="off" />
-                                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                                    </div>
+                                                    <div class="p-2">
+                                                        <label for="name" class="block text-sm text-green-600">
+                                                            Email Address<span class="text-red-600">*</span>
+                                                        </label>
+                                                        <input type="email" id="email" name="email"
+                                                            class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
+                                                            required autocomplete="off" />
+                                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                                    </div>
+                                                    <div class="p-2">
+                                                        <label for="password" class="block text-sm text-green-600">
+                                                            Password<span class="text-red-600">*</span>
+                                                        </label>
+                                                        <input type="password" id="email" name="password"
+                                                            class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
+                                                            required autocomplete="off" />
+                                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
 
-                                                    <label for="password" class="block text-sm text-green-600">
-                                                        Confirm Password<span class="text-red-600">*</span>
-                                                    </label>
-                                                    <input type="password" id="password"
-                                                        name="password_confirmation"
-                                                        class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
-                                                        required autocomplete="off" />
-                                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                                    </div>
+                                                    <div class="p-2">
+                                                        <label for="password" class="block text-sm text-green-600">
+                                                            Confirm Password<span class="text-red-600">*</span>
+                                                        </label>
+                                                        <input type="password" id="password"
+                                                            name="password_confirmation"
+                                                            class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
+                                                            required autocomplete="off" />
+                                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div
                                             class="border-outline flex flex-col-reverse justify-between gap-2 border-t bg-white p-4 sm:flex-row sm:items-center md:justify-end">
-                                            <button x-on:click="open = false" type="button"
+                                            <button x-on:click.prevent="open = false" type="button"
                                                 class="inline-flex items-center rounded-full border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-800 transition duration-150 ease-in-out hover:bg-gray-200">
                                                 Cancel
                                             </button>
@@ -162,10 +168,11 @@
 
                                                 <button x-data
                                                     x-on:click="$dispatch('open-modal', {name: 'delete_user-{{ $user->id }}' })"
-                                                    href="{{ route('user.destroy', $user->id) }}" type="button"
+                                                    type="button"
                                                     class="ms-1 inline-flex items-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-red-600 hover:text-red-800 focus:text-red-800 focus:outline-none disabled:pointer-events-none disabled:opacity-50">Delete
                                                 </button>
 
+                                                <!-- update modal -->
                                                 <x-modal name="edit_user-{{ $user->id }}"
                                                     id="{{ $user->id }}">
                                                     <div
@@ -190,57 +197,66 @@
                                                         @method('put')
                                                         <div class="p-4">
                                                             <div class="mx-auto max-w-lg space-y-3 text-left">
-                                                                <div class="p-1.5">
-                                                                    <label for="name"
-                                                                        class="block text-sm text-green-600">
-                                                                        Name<span class="text-red-600">*</span>
-                                                                    </label>
-                                                                    <input type="text" id="name"
-                                                                        name="name" value="{{ $user->name }}"
-                                                                        class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
-                                                                        required autocomplete="off" />
-                                                                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                                                                </div>
-                                                                <div class="p-1.5">
-                                                                    <label for="name"
-                                                                        class="block text-sm text-green-600">
-                                                                        Email Address<span
-                                                                            class="text-red-600">*</span>
-                                                                    </label>
-                                                                    <input type="email" id="email"
-                                                                        name="email" value="{{ $user->email }}"
-                                                                        class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
-                                                                        required autocomplete="off" />
-                                                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                                                                </div>
-                                                                <div class="p-1.5">
-                                                                    <label for="password"
-                                                                        class="block text-sm text-green-600">
-                                                                        Password<span class="text-red-600">*</span>
-                                                                    </label>
-                                                                    <input type="password" id="email"
-                                                                        name="password"
-                                                                        class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
-                                                                        required autocomplete="off" />
-                                                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                                                                </div>
-                                                                <div class="p-1.5">
-                                                                    <label for="password_confirmation"
-                                                                        class="block text-sm text-green-600">
-                                                                        Confirm Password<span
-                                                                            class="text-red-600">*</span>
-                                                                    </label>
-                                                                    <input type="password" id="password_confirmation"
-                                                                        name="password_confirmation"
-                                                                        class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
-                                                                        required autocomplete="off" />
-                                                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                                                <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                                                                    <div class="p-2">
+                                                                        <label for="name"
+                                                                            class="block text-sm text-green-600">
+                                                                            Name<span class="text-red-600">*</span>
+                                                                        </label>
+                                                                        <input type="text" id="name"
+                                                                            name="name"
+                                                                            value="{{ $user->name }}"
+                                                                            class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
+                                                                            required autocomplete="off" />
+                                                                        <x-input-error :messages="$errors->get('name')"
+                                                                            class="mt-2" />
+                                                                    </div>
+                                                                    <div class="p-2">
+                                                                        <label for="name"
+                                                                            class="block text-sm text-green-600">
+                                                                            Email Address<span
+                                                                                class="text-red-600">*</span>
+                                                                        </label>
+                                                                        <input type="email" id="email"
+                                                                            name="email"
+                                                                            value="{{ $user->email }}"
+                                                                            class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
+                                                                            required autocomplete="off" />
+                                                                        <x-input-error :messages="$errors->get('email')"
+                                                                            class="mt-2" />
+                                                                    </div>
+                                                                    <div class="p-2">
+                                                                        <label for="password"
+                                                                            class="block text-sm text-green-600">
+                                                                            Password<span class="text-red-600">*</span>
+                                                                        </label>
+                                                                        <input type="password" id="email"
+                                                                            name="password"
+                                                                            class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
+                                                                            required autocomplete="off" />
+                                                                        <x-input-error :messages="$errors->get('password')"
+                                                                            class="mt-2" />
+                                                                    </div>
+                                                                    <div class="p-2">
+                                                                        <label for="password_confirmation"
+                                                                            class="block text-sm text-green-600">
+                                                                            Confirm Password<span
+                                                                                class="text-red-600">*</span>
+                                                                        </label>
+                                                                        <input type="password"
+                                                                            id="password_confirmation"
+                                                                            name="password_confirmation"
+                                                                            class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
+                                                                            required autocomplete="off" />
+                                                                        <x-input-error :messages="$errors->get('password')"
+                                                                            class="mt-2" />
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div
                                                             class="border-outline flex flex-col-reverse justify-between gap-2 border-t bg-white p-4 sm:flex-row sm:items-center md:justify-end">
-                                                            <button x-on:click="show = false" type="button"
+                                                            <button x-on:click.prevent="show = false" type="button"
                                                                 class="inline-flex items-center rounded-full border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-800 transition duration-150 ease-in-out hover:bg-gray-200">
                                                                 Cancel
                                                             </button>
@@ -252,6 +268,7 @@
                                                     </form>
                                                 </x-modal>
 
+                                                <!-- delete modal -->
                                                 <x-modal name="delete_user-{{ $user->id }}"
                                                     id="{{ $user->id }}">
                                                     <div class="flex flex-col items-center gap-4 p-4">
@@ -275,9 +292,9 @@
                                                         class="flex justify-center gap-x-4 p-4">
                                                         @csrf
                                                         @method('delete')
-                                                        <button x-on:click="show = false"
+                                                        <button x-on:click.prevent="show = false"
                                                             class="rounded-md border bg-gray-300 px-4 py-2 font-thin hover:bg-gray-400">Cancel</button>
-                                                        <button type="submit"
+                                                        <button type=""
                                                             class="rounded-md border bg-red-500 px-4 py-2 font-thin text-white hover:bg-red-600">Delete</button>
                                                     </form>
                                                 </x-modal>
@@ -305,3 +322,4 @@
         </div>
     </div>
 </x-app-layout>
+

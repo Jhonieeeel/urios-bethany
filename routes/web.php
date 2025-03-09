@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\ResidentDocumentController;
 use App\Http\Controllers\ResidentStatusController;
+use App\Http\Controllers\UserController;
 use App\Models\Officer;
 use App\Models\Resident;
 use Illuminate\Support\Facades\Route;
@@ -84,5 +85,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+// users
+
+Route::get('/users', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('user.index');
+Route::post('/users/add', [UserController::class, 'store'])->middleware(['auth', 'verified'])->name('user.store');
+Route::put('/users/{id}/update', [UserController::class, 'update'])->middleware(['auth', 'verified'])->name('user.update');
+Route::delete('/users/{id}/delete', [UserController::class, 'destroy'])->middleware(['auth', 'verified'])->name('user.destroy');
 
 require __DIR__ . '/auth.php';
