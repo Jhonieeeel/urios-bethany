@@ -130,7 +130,7 @@
                             <div class="overflow-hidden rounded-md bg-white shadow-lg transition hover:scale-[1.1]">
                                 <img src="{{ asset($officer->officerImage) }}"
                                     class="h-32 w-48 object-cover sm:h-48 sm:w-64">
-                                <div class="m-4 bg-red-500 text-center">
+                                <div class="m-4 text-center">
                                     <span
                                         class="font-semibold">{{ $officer->firstname . ' ' . $officer->middlename . ' ' . $officer->lastname }}</span>
                                     <span class="block text-sm text-gray-500">{{ $officer->officePosition }}</span>

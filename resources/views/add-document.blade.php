@@ -1,5 +1,4 @@
 <x-app-layout>
-    {{ $errors }}
     <div class="p-6 sm:px-24">
         <div class="max-w-lg bg-gray-200 p-3 shadow-md">
             <h3 class="mb-2 text-lg font-semibold">Upload File</h3>

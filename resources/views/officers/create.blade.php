@@ -1,6 +1,5 @@
 <x-app-layout>
     <div class="sm:px-16 sm:py-6">
-        {{ $errors }}
         <!-- Add officer -->
         <form action="{{ route('add-officer') }}" method="post" class="m-6 w-full border bg-white p-6 shadow-xl"
             enctype="multipart/form-data">
@@ -65,8 +64,13 @@
             <div class="flex flex-wrap items-center gap-6 p-2">
                 <div class="flex flex-col items-center justify-center pt-6">
                     <small class="text-green-600">Upload Image<span class="text-red-500">*</span></small>
+<<<<<<< Updated upstream:resources/views/officers/create.blade.php
                     <img id="imageHolder" src="{{ asset('storage/profiles/default-profile.png') }}"
                         class="h-[150px] w-[150px] shadow-lg" alt="">
+=======
+                    <img id="imageHolder" src="{{ asset('images/upload-image.png') }}"
+                        class="h-[150px] w-[150px] object-cover shadow-lg" alt="">
+>>>>>>> Stashed changes:resources/views/add-officer.blade.php
                     <label
                         class="my-2 flex cursor-pointer items-center space-x-2 rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-green-700">
                         <span class="">Choose File</span>

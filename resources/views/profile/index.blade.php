@@ -1,9 +1,8 @@
 <x-app-layout>
 
-    {{ $errors }}
     <div class="p-6 sm:p-8">
         <h2 class="text-2xl font-semibold text-gray-800">
-            Residents
+            Users
         </h2>
 
         <div class="flex flex-col">
@@ -45,7 +44,7 @@
                                 <div x-cloak x-show="open" x-transition.opacity.duration.200ms
                                     x-trap.inert.noscroll="open" x-on:keydown.esc.window="open = false"
                                     x-on:click.self="open = false"
-                                    class="fixed inset-0 z-30 flex items-end justify-center bg-black/20 p-4 pb-8 sm:items-center lg:p-8"
+                                    class="fixed inset-0 z-30 flex items-end justify-center bg-black/20 p-4 sm:items-start sm:p-2 md:pb-8 lg:p-32"
                                     role="dialog" aria-modal="true" aria-labelledby="new-document-header">
                                     <form action="{{ route('user.store') }}" method="post" x-show="open"
                                         x-transition:enter="transition ease-out duration-150"
@@ -70,7 +69,7 @@
                                         <div class="p-4">
                                             <div class="mx-auto max-w-lg space-y-3">
                                                 @csrf
-                                                <div>
+                                                <div class="flex flex-col flex-wrap gap-2 sm:justify-between">
                                                     <label for="name" class="block text-sm text-green-600">
                                                         Name<span class="text-red-600">*</span>
                                                     </label>
@@ -78,8 +77,7 @@
                                                         class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
                                                         required autocomplete="off" />
                                                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                                                </div>
-                                                <div>
+
                                                     <label for="name" class="block text-sm text-green-600">
                                                         Email Address<span class="text-red-600">*</span>
                                                     </label>
@@ -88,7 +86,7 @@
                                                         required autocomplete="off" />
                                                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                                 </div>
-                                                <div>
+                                                <div class="flex flex-wrap gap-2">
                                                     <label for="password" class="block text-sm text-green-600">
                                                         Password<span class="text-red-600">*</span>
                                                     </label>
@@ -96,8 +94,7 @@
                                                         class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
                                                         required autocomplete="off" />
                                                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                                                </div>
-                                                <div>
+
                                                     <label for="password" class="block text-sm text-green-600">
                                                         Confirm Password<span class="text-red-600">*</span>
                                                     </label>
@@ -175,9 +172,9 @@
                                                         class="border-outline flex items-center justify-between border-b bg-white p-4">
                                                         <h3 id="new-document-header"
                                                             class="font-semibold tracking-wide text-gray-800">
-                                                            Create User Account
+                                                            Update User Account
                                                         </h3>
-                                                        <button x-on:click="open = false" aria-label="close modal">
+                                                        <button x-on:click="show = false" aria-label="close modal">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                 viewBox="0 0 24 24" aria-hidden="true"
                                                                 stroke="currentColor" fill="none"
@@ -192,9 +189,8 @@
                                                         @csrf
                                                         @method('put')
                                                         <div class="p-4">
-
                                                             <div class="mx-auto max-w-lg space-y-3 text-left">
-                                                                <div class="p-2">
+                                                                <div class="p-1.5">
                                                                     <label for="name"
                                                                         class="block text-sm text-green-600">
                                                                         Name<span class="text-red-600">*</span>
@@ -205,7 +201,7 @@
                                                                         required autocomplete="off" />
                                                                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                                                 </div>
-                                                                <div class="p-2">
+                                                                <div class="p-1.5">
                                                                     <label for="name"
                                                                         class="block text-sm text-green-600">
                                                                         Email Address<span
@@ -217,7 +213,7 @@
                                                                         required autocomplete="off" />
                                                                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                                                 </div>
-                                                                <div class="p-2">
+                                                                <div class="p-1.5">
                                                                     <label for="password"
                                                                         class="block text-sm text-green-600">
                                                                         Password<span class="text-red-600">*</span>
@@ -228,7 +224,7 @@
                                                                         required autocomplete="off" />
                                                                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                                                 </div>
-                                                                <div class="p-2">
+                                                                <div class="p-1.5">
                                                                     <label for="password_confirmation"
                                                                         class="block text-sm text-green-600">
                                                                         Confirm Password<span
