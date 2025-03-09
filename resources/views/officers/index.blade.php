@@ -145,7 +145,7 @@
                                 <img src="{{ asset('images/no-picture.jpg') }}"
                                     class="h-32 w-48 object-cover sm:h-48 sm:w-64" alt="">
                                 <div class="m-4 text-center">
-                                    <span class="font-semibold">Mark Laurence Mejo</span>
+                                    <span class="font-semibold">No user assigned yet.</span>
                                     <span class="block text-sm text-gray-500">Officer</span>
                                 </div>
                             </div>
@@ -158,7 +158,7 @@
                                 <img src="{{ asset('images/no-picture.jpg') }}"
                                     class="h-32 w-48 object-cover sm:h-48 sm:w-64" alt="">
                                 <div class="m-4 text-center">
-                                    <span class="font-semibold">Mark Laurence Mejo</span>
+                                    <span class="font-semibold">No user assigned yet.</span>
                                     <span class="block text-sm text-gray-500">Officer</span>
                                 </div>
                             </div>
