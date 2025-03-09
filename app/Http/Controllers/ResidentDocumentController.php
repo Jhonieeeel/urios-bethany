@@ -7,9 +7,19 @@ use App\Models\Resident;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
 class ResidentDocumentController extends Controller
 {
+    public function index(Request $request, Resident $resident): View
+    {
+        $documents = $resident->documents()->search(request('query'));
+
+        return view('residents.documents.index', [
+            'documents' => $documents,
+        ]);
+    }
+
     public function store(Request $request, Resident $resident): RedirectResponse
     {
         $request->validate([

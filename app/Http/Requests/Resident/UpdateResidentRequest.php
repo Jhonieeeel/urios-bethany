@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Resident;
 
+use App\Enums\ResidentStatus;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -26,12 +27,13 @@ class UpdateResidentRequest extends FormRequest
             'first_name' => 'required|string',
             'middle_name' => 'nullable|string',
             'last_name' => 'required|string',
-            'age' => 'required|numeric',
+            'birth_date' => 'required|date',
             'gender' => ['required', Rule::in(['Male', 'Female'])],
             'address' => 'required|string',
-            'status' => ['required', Rule::in(['Admitted', 'Discharged'])],
+            'contact_number' => 'nullable|string',
             'admitted_at' => 'required|date',
-            'dismissed_at' => 'required|date',
+            'dismissed_at' => 'nullable|date',
+            'status' => ['required', 'string', Rule::in(ResidentStatus::values())],
             'profile' => 'nullable|file|mimetypes:image/*',
         ];
     }

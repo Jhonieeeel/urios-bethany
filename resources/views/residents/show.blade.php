@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="p-6 sm:p-8">
         <a href="{{ route('residents.index') }}"
-            class="inline-flex items-center rounded-full border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-800 transition duration-150 ease-in-out hover:bg-gray-200">
+            class="inline-flex items-center rounded-full border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-800 transition duration-150 ease-in-out hover:bg-gray-200">
             Back
         </a>
 
@@ -29,6 +29,12 @@
                     <dl class="mt-2 text-gray-900">
                         <dt class="text-sm font-semibold">Admission Date:</dt>
                         <dd>{{ $resident->admitted_at->format('d/m/Y') }}</dd>
+                        <dt class="mt-3 text-sm font-semibold">Dismissal Date:</dt>
+                        @if ($resident->dismissal_date !== NULL)
+                            <dd>{{ $resident->admitted_at->format('d/m/Y') }}</dd>
+                        @else
+                            <dd>N/A</dd>
+                        @endif
                         <dt class="mt-3 text-sm font-semibold">Nature of Crime:</dt>
                         <dd>{{ $resident->clientele_category }}</dd>
                     </dl>
@@ -38,17 +44,86 @@
             <div class="flex flex-col items-center">
                 <img src="{{ asset('storage/' . $resident->profile) }}" alt=""
                     class="h-[193px] w-[196px] rounded object-cover" />
-                <button type="button"
-                    class="mt-2 inline-flex items-center rounded-full bg-green-700 px-4 py-2 text-sm font-medium text-white transition duration-150 ease-in-out hover:bg-green-600/90">
-                    {{ $resident->status }}
-                </button>
-            </div>
-        </div>
+                <div x-data="{ open: false }" class="mt-2">
+                    <button x-on:click="open = true"
+                        class="inline-flex items-center rounded-full bg-green-700 px-4 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-green-700/90 focus:outline-none">
+                        {{ $resident->status }}
+                    </button>
 
-        <div class="mt-3 rounded-lg border border-gray-300 bg-white px-8 py-6 shadow-lg">
-            <h2 class="text-xl font-semibold text-gray-800">
-                Progress
-            </h2>
+                    <div x-cloak x-show="open" x-transition.opacity.duration.200ms x-trap.inert.noscroll="open"
+                        x-on:keydown.esc.window="open = false" x-on:click.self="open = false"
+                        class="fixed inset-0 z-30 flex items-end justify-center bg-black/20 p-4 pb-8 sm:items-center lg:p-8"
+                        role="dialog" aria-modal="true" aria-labelledby="new-document-header">
+                        <div x-show="open" x-transition:enter="transition ease-out duration-150"
+                            x-transition:enter-start="opacity-0 scale-50" x-transition:enter-end="opacity-100 scale-100"
+                            class="flex w-full max-w-xl flex-col gap-4 overflow-hidden rounded-md border border-gray-300 bg-white">
+                            <div class="border-outline flex items-center justify-between border-b bg-white p-4">
+                                <h3 id="new-document-header" class="font-semibold tracking-wide text-gray-800">
+                                    Update Resident Status
+                                </h3>
+                                <button x-on:click="open = false" aria-label="close modal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"
+                                        stroke="currentColor" fill="none" stroke-width="1.4" class="h-5 w-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div x-data="{
+                                forDismissal: false,
+                                onStatusChange(evt) {
+                                    if (evt.target.value === 'Dismissed') {
+                                        this.forDismissal = true;
+                                        document.getElementById('dismissed_at-required').classList.remove('hidden');
+                                        document.getElementById('dismissed_at').setAttribute('required', '');
+                                    } else {
+                                        this.forDismissal = false;
+                                        document.getElementById('dismissed_at-required').classList.add('hidden');
+                                        document.getElementById('dismissed_at').removeAttribute('required');
+                                    }
+                                },
+                            }" class="px-4">
+                                <form id="update-resident-status-form"
+                                    action="{{ route('residents.status.update', $resident) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <div>
+                                        <label for="status" class="block text-sm font-medium text-gray-800">
+                                            Status<span class="text-red-600">*</span>
+                                        </label>
+                                        <select id="status" name="status" x-on:change="onStatusChange"
+                                            class="mt-1 block w-full max-w-sm rounded-full border border-gray-300 text-sm shadow-sm focus:border-green-700 focus:ring-green-700">
+                                            @foreach (\App\Enums\ResidentStatus::values() as $status)
+                                                <option value="{{ $status }}" @selected($resident->status === $status)>
+                                                    {{ $status }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <label for="dismissed_at" class="block text-sm font-medium text-gray-800">
+                                            Dismissal Date<span id="dismissed_at-required" class="text-red-600">*</span>
+                                        </label>
+                                        <input type="date" name="dismissed_at" id="dismissed_at" x-bind:disabled="forDismissal === false" class="block w-full max-w-sm rounded-full border border-gray-300 text-sm shadow-sm focus:border-green-700 focus:ring-green-700 disabled:opacity-50" />
+                                    </div>
+                                </form>
+                            </div>
+                            <div
+                                class="border-outline flex flex-col-reverse justify-between gap-2 border-t bg-white p-4 sm:flex-row sm:items-center md:justify-end">
+                                <button x-on:click="open = false" type="button"
+                                    class="inline-flex items-center rounded-full border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-800 transition duration-150 ease-in-out hover:bg-gray-200">
+                                    Cancel
+                                </button>
+                                <button form="update-resident-status-form" type="submit"
+                                    class="inline-flex items-center rounded-full bg-green-700 px-4 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-green-700/90">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
         <div class="mt-3 rounded-lg border border-gray-300 bg-white px-8 py-6 shadow-lg">
@@ -84,8 +159,9 @@
                                     <button x-on:click="open = true" type="button"
                                         class="inline-flex items-center rounded-full bg-green-700 px-4 py-2 text-sm font-medium text-white transition duration-150 ease-in-out hover:bg-green-700/90 focus-visible:outline-none">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" class="me-2 size-4 shrink-0">
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="me-2 size-4 shrink-0">
                                             <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
                                             <path d="M14 2v4a2 2 0 0 0 2 2h4" />
                                             <path d="M9 15h6" />
@@ -118,23 +194,35 @@
                                                     </svg>
                                                 </button>
                                             </div>
-                                            <div class="p-4">
-                                                <form action="" method="post" enctype="multipart/form-data">
+                                            <div class="px-4">
+                                                <form id="new-document-form"
+                                                    action="{{ route('residents.documents.store', $resident) }}"
+                                                    method="post" enctype="multipart/form-data">
                                                     @csrf
-                                                    <form class="max-w-sm">
-                                                        <label for="file-input" class="sr-only">Choose file</label>
-                                                        <input type="file" name="file-input" id="file-input"
-                                                            class="block w-full rounded-md border border-gray-300 text-sm shadow-sm file:me-4 file:border-0 file:bg-gray-50 file:px-4 file:py-3 focus:z-10 focus:border-green-500 focus:ring-green-500 disabled:pointer-events-none disabled:opacity-50" required accept="application/pdf" />
-                                                    </form>
+                                                    <div>
+                                                        <label for="filename" class="sr-only">File Name</label>
+                                                        <input type="text" id="filename" name="filename"
+                                                            class="block w-full rounded-md border border-gray-300 text-sm shadow-sm focus:border-green-500 focus:ring-green-500"
+                                                            required placeholder="File Name" />
+                                                        <x-input-error :messages="$errors->get('filename')" class="mt-2" />
+                                                    </div>
+
+                                                    <div class="mt-4">
+                                                        <label for="document" class="sr-only">Choose file</label>
+                                                        <input type="file" name="document" id="document"
+                                                            class="block w-full rounded-md border border-gray-300 text-sm shadow-sm file:me-4 file:border-0 file:bg-gray-50 file:px-4 file:py-3 focus:z-10 focus:border-green-500 focus:ring-green-500 disabled:pointer-events-none disabled:opacity-50"
+                                                            required accept="application/pdf" />
+                                                        <x-input-error :messages="$errors->get('document')" class="mt-2" />
+                                                    </div>
                                                 </form>
                                             </div>
                                             <div
                                                 class="border-outline flex flex-col-reverse justify-between gap-2 border-t bg-white p-4 sm:flex-row sm:items-center md:justify-end">
                                                 <button x-on:click="open = false" type="button"
-                                                    class="inline-flex items-center rounded-full border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-800 transition duration-150 ease-in-out hover:bg-gray-200">
+                                                    class="inline-flex items-center rounded-full border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-800 transition duration-150 ease-in-out hover:bg-gray-200">
                                                     Cancel
                                                 </button>
-                                                <button x-on:click="open = false" type="button"
+                                                <button form="new-document-form" type="submit"
                                                     class="inline-flex items-center rounded-full bg-green-700 px-4 py-2 text-sm text-white transition duration-150 ease-in-out hover:bg-green-700/90">
                                                     Submit
                                                 </button>
@@ -164,7 +252,23 @@
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-200">
-                                        @forelse ($resident->documents as $documents)
+                                        @forelse ($resident->documents as $document)
+                                            <tr>
+                                                <td
+                                                    class="whitespace-nowrap px-6 py-4 text-start text-sm font-medium text-gray-800">
+                                                    {{ $document->filename }}
+                                                </td>
+                                                <td class="whitespace-nowrap px-6 py-4 text-end text-sm text-gray-800">
+                                                    {{ $document->created_at->format('m/d/Y') }}
+                                                </td>
+                                                <td class="whitespace-nowrap px-6 py-4 text-end text-sm text-gray-800">
+                                                    <a href="{{ asset('storage/' . $document->path) }}"
+                                                        target="_blank"
+                                                        class="inline-flex items-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-green-600 hover:text-green-800 focus:text-green-800 focus:outline-none disabled:pointer-events-none disabled:opacity-50">
+                                                        Print
+                                                    </a>
+                                                </td>
+                                            </tr>
                                         @empty
                                             <tr>
                                                 <td colspan="6"

@@ -27,7 +27,7 @@ class ResidentFactory extends Factory
             'admitted_at' => fake()->date(),
             'clientele_category' => fake()->word(),
             'status' => 'Admitted',
-            'profile' => 'images/chancellor.png',
+            'profile' => 'images/default-profile.png',
         ];
     }
 }

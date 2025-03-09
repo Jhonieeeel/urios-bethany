@@ -6,6 +6,7 @@ use App\Enums\ResidentStatus;
 use App\Http\Requests\Resident\StoreResidentRequest;
 use App\Http\Requests\Resident\UpdateResidentRequest;
 use App\Models\Resident;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ResidentController extends Controller
@@ -13,11 +14,19 @@ class ResidentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->query('format') === 'print') {
+            return view('residents.print', [
+                'residents' => Resident::all(),
+            ]);
+        }
+
         $residents = Resident::search(request('query'))->paginate();
 
-        return view('residents.index', ['residents' => $residents]);
+        return view('residents.index', [
+            'residents' => $residents,
+        ]);
     }
 
     /**
@@ -60,6 +69,7 @@ class ResidentController extends Controller
     {
         return view('residents.edit', [
             'resident' => $resident,
+            'residentStatus' => ResidentStatus::values(),
         ]);
     }
 
