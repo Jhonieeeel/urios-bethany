@@ -19,3 +19,7 @@
 .officer-card {
     @apply w-80 rounded-md p-6 shadow-lg hover:shadow-xl transform transition hover:scale-[1.1];
 }
+
+[x-cloak] {
+    display: none;
+}
