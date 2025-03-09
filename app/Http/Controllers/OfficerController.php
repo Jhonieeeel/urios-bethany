@@ -14,9 +14,9 @@ class OfficerController extends Controller
      */
     public function index()
     {
-       $officers = Officer::all();
-
-        return view('officers', ['officers' => $officers]);
+        return view('officers.index', [
+            'officers' => Officer::all(),
+        ]);
     }
 
     /**
@@ -24,8 +24,7 @@ class OfficerController extends Controller
      */
     public function create()
     {
-        //
-        return view('add-officer');
+        return view('officers.create');
     }
 
     /**
@@ -33,8 +32,6 @@ class OfficerController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
        $request->validate([
             'firstname' => ['required', 'min:2'],
             'middlename' => ['nullable', 'min:2'],
@@ -48,16 +45,15 @@ class OfficerController extends Controller
         ]);
 
         $officerData = array_merge(
-            $request->except(['officerImage', 'age']), 
+            $request->except(['officerImage', 'age']),
             [
                 'officerPosition' => request('position'),
                 'officerImage' => asset('storage/'.$request->file('officerImage')->store('', 'public')),
                 'age' => Carbon::parse($request->dateOfBirth)->age
             ]
         );
-        
-        Officer::create($officerData);
 
+        Officer::create($officerData);
 
         return redirect()->route('officers');
     }
@@ -77,7 +73,7 @@ class OfficerController extends Controller
      */
     public function edit(string $id)
     {
-        
+
         $officer = Officer::findOrFail($id);
 
         return view('edit-officer', compact('officer'));
@@ -88,7 +84,7 @@ class OfficerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
+
 
         $request->validate([
             'firstname' => ['required', 'min:2'],
@@ -103,9 +99,9 @@ class OfficerController extends Controller
         ]);
 
         $officerData = array_merge(
-            $request->except(['officerImage', 'age']), 
+            $request->except(['officerImage', 'age']),
             [
-               
+
                 'officerImage' => asset('storage/'.$request->file('officerImage')->store('', 'public')),
                 'age' => Carbon::parse($request->dateOfBirth)->age
             ]
@@ -113,10 +109,10 @@ class OfficerController extends Controller
 
         $officer = Officer::findOrFail($id);
 
-     
+
 
         $officer->update($officerData);
-        
+
 
         return redirect()->route('officers');
     }

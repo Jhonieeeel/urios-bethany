@@ -30,7 +30,7 @@ class StoreResidentRequest extends FormRequest
             'birth_date' => 'required|date',
             'gender' => ['required', Rule::in(['Male', 'Female'])],
             'address' => 'required|string',
-            'contact_number',
+            'contact_number' => 'nullable|string',
             'admitted_at' => 'required|date',
             'dismissed_at' => 'nullable|date',
             'status' => ['required', 'string', Rule::in(ResidentStatus::values())],

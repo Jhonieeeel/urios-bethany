@@ -1,12 +1,13 @@
 <x-app-layout>
     <div class="p-6 sm:p-8">
         <h2 class="text-2xl font-semibold text-gray-800">
-            New Resident
+            Edit Resident Information
         </h2>
 
-        <form action="{{ route('residents.store') }}" method="post" enctype="multipart/form-data"
+        <form action="{{ route('residents.update', $resident) }}" method="post" enctype="multipart/form-data"
             class="mt-3 rounded-lg border border-gray-300 bg-white px-8 py-6 shadow-lg">
             @csrf
+            @method('PUT')
 
             <h3 class="text-center text-xl font-semibold text-green-600">Resident Information</h3>
 
@@ -19,7 +20,7 @@
                 },
             }" class="mt-4 flex flex-col items-center justify-start">
                 <label for="profile" class="block text-sm text-green-600">Upload Image</label>
-                <img id="profile-preview" src="{{ asset('storage/profiles/default-profile.png') }}" alt=""
+                <img id="profile-preview" src="{{ asset('storage/'.$resident->profile) }}" alt=""
                     class="mt-1 h-[193px] w-[196px] rounded-md object-cover shadow-sm" />
                 <input x-on:change="changeImagePreview" type="file" name="profile" id="profile" class="hidden"
                     accept="image/*" />
@@ -40,7 +41,7 @@
                     <label for="first_name" class="block text-sm text-green-600">
                         First Name<span class="text-red-600">*</span>
                     </label>
-                    <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}"
+                    <input type="text" id="first_name" name="first_name" value="{{ old('first_name', $resident->first_name) }}"
                         class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
                         required autocomplete="off" />
                     <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
@@ -50,7 +51,7 @@
                     <label for="middle_name" class="block text-sm text-green-600">
                         Middle Name
                     </label>
-                    <input type="text" id="middle_name" name="middle_name" value="{{ old('middle_name') }}"
+                    <input type="text" id="middle_name" name="middle_name" value="{{ old('middle_name', $resident->middle_name) }}"
                         class="mt-1 w-full rounded-full border-gray-300 bg-white text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600" />
                     <x-input-error :messages="$errors->get('middle_name')" class="mt-2" />
                 </div>
@@ -59,7 +60,7 @@
                     <label for="last_name" class="block text-sm text-green-600">
                         Last Name<span class="text-red-600">*</span>
                     </label>
-                    <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}"
+                    <input type="text" id="last_name" name="last_name" value="{{ old('last_name', $resident->last_name) }}"
                         class="mt-1 w-full rounded-full border-gray-300 bg-white text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
                         required autocomplete="off" />
                     <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
@@ -69,7 +70,7 @@
                     <label for="birth_date" class="block text-sm text-green-600">
                         Birth Date<span class="text-red-600">*</span>
                     </label>
-                    <input type="date" id="birth_date" name="birth_date" value="{{ old('birth_date') }}"
+                    <input type="date" id="birth_date" name="birth_date" value="{{ old('birth_date', $resident->birth_date->format('Y-m-d')) }}"
                         class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
                         required />
                     <x-input-error :messages="$errors->get('birth_date')" class="mt-2" />
@@ -83,7 +84,7 @@
                         class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600">
                         <option value="">Select Gender</option>
                         @foreach (['Male', 'Female'] as $gender)
-                            <option value="{{ $gender }}" @selected(old('gender') === $gender)>
+                            <option value="{{ $gender }}" @selected(old('gender', $resident->gender) === $gender)>
                                 {{ $gender }}
                             </option>
                         @endforeach
@@ -95,7 +96,7 @@
                     <label for="address" class="block text-sm text-green-600">
                         Address<span class="text-red-600">*</span>
                     </label>
-                    <input type="text" id="address" name="address" value="{{ old('address') }}"
+                    <input type="text" id="address" name="address" value="{{ old('address', $resident->address) }}"
                         class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
                         required autocomplete="off" />
                     <x-input-error :messages="$errors->get('address')" class="mt-2" />
@@ -106,7 +107,7 @@
                         Contact Number
                     </label>
                     <input type="text" id="contact_number" name="contact_number"
-                        value="{{ old('contact_number') }}"
+                        value="{{ old('contact_number', $resident->contact_number) }}"
                         class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600" />
                     <x-input-error :messages="$errors->get('contact_number')" class="mt-2" />
                 </div>
@@ -127,6 +128,7 @@
                         this.forDismissal = false;
                         document.getElementById('dismissed_at-required').classList.add('hidden');
                         document.getElementById('dismissed_at').removeAttribute('required');
+                        document.getElementById('dismissed_at').value = '';
                     }
                 },
             }" class="mt-4 grid grid-cols-3 gap-6">
@@ -134,7 +136,7 @@
                     <label for="admitted_at" class="block text-sm text-green-600">
                         Admission Date<span class="text-red-600">*</span>
                     </label>
-                    <input type="date" id="admitted_at" name="admitted_at" value="{{ old('admitted_at') }}"
+                    <input type="date" id="admitted_at" name="admitted_at" value="{{ old('admitted_at', $resident->admitted_at->format('Y-m-d')) }}"
                         class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600"
                         required />
                     <x-input-error :messages="$errors->get('admitted_at')" class="mt-2" />
@@ -167,7 +169,7 @@
                             'Sexual Harrassment',
                             'Act of Lascivousness',
                         ] as $category)
-                            <option value="{{ $category }}" @selected(old('clientele_category') === $category)>
+                            <option value="{{ $category }}" @selected(old('clientele_category', $resident->clientele_category) === $category)>
                                 {{ $category }}
                             </option>
                         @endforeach
@@ -183,7 +185,7 @@
                         class="mt-1 w-full rounded-full border-gray-300 bg-white px-4 text-sm shadow-sm focus:border-green-600 focus:outline-none focus:ring-green-600">
                         <option value="">Select Status</option>
                         @foreach ($residentStatus as $status)
-                            <option value="{{ $status }}" @selected(old('status') === $status)>
+                            <option value="{{ $status }}" @selected(old('status', $resident->status) === $status)>
                                 {{ $status }}
                             </option>
                         @endforeach

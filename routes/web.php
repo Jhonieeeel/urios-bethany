@@ -7,7 +7,7 @@ use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\ResidentDocumentController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\ResidentStatusController;
 use App\Models\Officer;
 use App\Models\Resident;
 use Illuminate\Support\Facades\Route;
@@ -41,19 +41,6 @@ Route::middleware(['auth'])->controller(OfficerController::class)->group(functio
     Route::delete('/officers/{id}', 'destroy')->name('delete-officer');
 });
 
-Route::middleware(['auth'])->controller(UserController::class)->group(function() {
-    Route::get('/users', 'index')->name('user.index');
-    Route::get('/users/add', 'create')->name('user.create');
-    Route::post('/users/store', 'store')->name('user.store');
-    Route::delete("/user/{id}/destroy", 'destroy')->name("user.destroy");
-    Route::put("user/{id}/update", 'update')->name('user.update');
-});
-
-Route::get('/documents', [DocumentController::class, 'index'])->middleware(['auth', 'verified'])->name('documents');
-Route::get('/documents/{id}', [DocumentController::class, 'show'])->middleware(['auth', 'verified'])->name('documents.show');
-Route::get('/document/create', [DocumentController::class, 'create'])->middleware(['auth', 'verified'])->name('documents.create');
-Route::post('/documents', [DocumentController::class, 'store'])->middleware(['auth', 'verified'])->name('documents.store');
-
 Route::get("/calendar", [EventController::class, 'index'])->middleware(['auth', 'verified'])->name('calendar');
 Route::post('/calendar/add', [EventController::class, 'store'])->middleware(['auth', 'verified'])->name('addEventCalendar');
 Route::get('/get-events', [EventController::class, 'getEvents'])->middleware(['auth', 'verified'])->name('getEvents');
@@ -78,12 +65,19 @@ Route::middleware(['auth'])->controller(ResidentController::class)->group(functi
     Route::delete('/residents/{resident}', 'destroy')->name('residents.destroy');
 });
 
+Route::put('/residents/{resident}/status', [ResidentStatusController::class, 'update'])
+    ->middleware('auth')->name('residents.status.update');
+
 Route::middleware(['auth'])->controller(ResidentDocumentController::class)->group(function () {
     Route::post('/residents/{resident}/documents', 'store')->name('residents.documents.store');
     Route::delete('/residents/{resident}/documents/{document}', 'destroy')->name('resident.documents.destroy');
 });
 
-Route::put('/resident/{resident}', [ResidentController::class, 'update'])->middleware(['auth', 'verified'])->name('updateResident');
+Route::middleware(['auth'])->controller(DocumentController::class)->group(function () {
+    Route::get('/documents', 'index')->name('documents.index');
+    Route::post('/documents', 'store')->name('documents.store');
+    Route::delete('/documents', 'destroy')->name('documents.destroy');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

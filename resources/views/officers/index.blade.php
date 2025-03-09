@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="my-12 p-6 sm:p-16">
+    <div class="p-6 sm:p-8">
         <p class="pb-5 text-center text-xl font-bold text-black">Board of Trustees</p>
         <div class="mx-auto mb-12 flex max-w-6xl flex-col items-center justify-center gap-9">
             @php
